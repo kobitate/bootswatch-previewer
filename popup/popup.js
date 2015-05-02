@@ -1,29 +1,41 @@
+// JSHint definitions
+/*global chrome */
+
 // define our themes
 var themes = ['cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];
 
+var pagePrepped = false;
+
 function prepPage() {
-	chrome.tabs.executeScript(null, {file: "target_page_inject.js"});
+	chrome.tabs.executeScript(null, {file: "target_page/inject.js"});
 }
 
 function setTheme(t) {
+		
+	var themeFile = chrome.extension.getURL('themes/'+t+'.css');
 	chrome.tabs.executeScript(null, {
-		code: 'document.getElementById("bootswatch-style").setAttribute("href", "//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/'+ t +'/bootstrap.min.css")'
+		code: 'document.getElementById("bootswatch-style").setAttribute("href", "'+ themeFile +'");'+
+			'document.getElementById("original-stylesheet").disabled = true;'
 	});
+	
+	$("#download").attr('href', "http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/"+ t +"/bootstrap.min.css");
+	
 }
 
 function clearTheme() {
-	chrome.tabs.executeScript(null, {
-		code: 'document.getElementById("bootswatch-style").setAttribute("href", "")'
-	});
+	chrome.tabs.executeScript(null, {file: "target_page/reset.js"});
 }
 
 $(document).ready(function(){
 	
-	prepPage();
+	if (!pagePrepped) {
+		prepPage();
+		pagePrepped = true;
+	}
 	
-	for (t in themes) {
+	for (var t in themes) {
 		t = themes[t];
-		if(typeof t !="string"){
+		if(typeof t !== "string"){
 			continue;
 		}
 		
@@ -40,7 +52,7 @@ $(document).ready(function(){
 		clearTheme();
 	});
 	
-	$("span a").click(function(){
+	$("a:not(#reset)").click(function(){
 		chrome.tabs.create({url: $(this).attr('href')});
 		return false;
 	});
