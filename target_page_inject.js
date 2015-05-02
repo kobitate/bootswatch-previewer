@@ -1,3 +1,6 @@
-var headHTML = document.getElementsByTagName('head')[0].innerHTML;
-headHTML    += '<link id="bootswatch-style" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/cerulean/bootstrap.min.css" />';
-document.getElementsByTagName('head')[0].innerHTML = headHTML;
+var sheet = document.getElementById("bootswatch-style");
+if (sheet == null) {
+	var headHTML = document.getElementsByTagName('head')[0].innerHTML;
+	headHTML    += '<link id="bootswatch-style" rel="stylesheet" href="" />';
+	document.getElementsByTagName('head')[0].innerHTML = headHTML;
+}

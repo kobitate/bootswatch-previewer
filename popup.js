@@ -11,6 +11,12 @@ function setTheme(t) {
 	});
 }
 
+function clearTheme() {
+	chrome.tabs.executeScript(null, {
+		code: 'document.getElementById("bootswatch-style").setAttribute("href", "")'
+	});
+}
+
 $(document).ready(function(){
 	
 	prepPage();
@@ -21,11 +27,22 @@ $(document).ready(function(){
 			continue;
 		}
 		
-		$("#themes").append('<div class="theme-block" id="theme-' + t + '" data-theme="' + t + '">' + t + '</div>');
+		$("#themes").append('<div class="theme-block" id="theme-' + t + '" data-theme="' + t + '"><div class="theme-icon">'+ t.toUpperCase().charAt(0) +'</div>' + t + '</div>');
 	}
 	
 	$(".theme-block").click(function(){
 		setTheme($(this).data('theme'));
+		$('.theme-icon.active').toggleClass('active');
+		$(this).find('.theme-icon').toggleClass('active');
+	});
+	
+	$("#reset").click(function(){
+		clearTheme();
+	});
+	
+	$("span a").click(function(){
+		chrome.tabs.create({url: $(this).attr('href')});
+		return false;
 	});
 	
 });

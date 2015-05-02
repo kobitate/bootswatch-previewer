@@ -1,0 +1,96 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,400);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,100);
+@import url(http://fonts.googleapis.com/css?family=Lato:100,400,700);
+@import url(http://fonts.googleapis.com/css?family=News+Cycle:700);
+@import url(http://fonts.googleapis.com/css?family=Raleway:700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400);
+
+body {
+	min-width: 300px;
+	text-align: center;
+	font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+h1 {
+	font-size: 1.5em;
+	margin-bottom: 0;
+}
+
+span {
+	text-transform: uppercase;
+	color: #111;
+	font-size: .9em;
+	margin-bottom: 10px;
+}
+
+#themes {
+	clear: both;
+	height: 375px;
+	.theme-block {
+		width: 20%;
+		margin: 2.5%;
+		float: left;
+		text-transform: capitalize;
+		text-align: center;
+		height: 75px;
+	
+		.theme-icon {
+			cursor: pointer;
+			width: 100%;
+			font-size: 3em;
+			text-align: center;
+			font-weight: thin;
+			box-shadow: 0 0 0 2px rgba(0,0,0,0.3);
+			border-bottom: solid transparent 15px;
+			line-height: 50px;
+			margin-bottom: 3px;
+			
+			&.active {
+				box-shadow: 0 0 0 2px rgba(0,0,0,0.7);
+			}
+			
+		}
+	}
+}
+
+#reset {
+	text-align: center;
+	color: white;
+	background: rgb(205,53,0);
+	width: 97%;
+	padding: 5px;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	font-weight: 100;
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+
+
+.theme-setup(@name, @text-color, @background-color, @accent-color, @font:~'"Helvetica Neue",Helvetica,Arial,sans-serif', @rules:{}) {
+	#themes #theme-@{name} .theme-icon {
+		color: @text-color;
+		background-color: @background-color;
+		border-bottom-color: @accent-color;
+		font-family: @font;
+		@rules();
+	}
+}
+
+.theme-setup(cerulean, rgb(44,104,160), white, rgb(73,159,236), @rules:{font-weight: bold});
+.theme-setup(cosmo, rgb(38,38,38), white, rgb(37,101,229), ~'"Source Sans Pro",Calibri,Candara,Arial,sans-serif', {font-weight: 100});
+.theme-setup(cyborg, white, rgb(7,7,7), rgb(45,138,210), ~'"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif');
+.theme-setup(darkly, white, rgb(26,26,26), rgb(44,70,111), ~'"Lato","Helvetica Neue",Helvetica,Arial,sans-serif');
+.theme-setup(flatly, rgb(34,46,64), white, rgb(34,46,64), ~'"Lato","Helvetica Neue",Helvetica,Arial,sans-serif');
+.theme-setup(journal, black, white, rgb(222,82,79), ~'"News Cycle","Arial Narrow Bold",sans-serif');
+.theme-setup(lumen, rgb(43,43,43), white, rgb(32,119,177), ~'"Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif');
+.theme-setup(paper, rgb(52,52,52), white, rgb(38,125,249), ~'"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif');
+.theme-setup(readable, rgb(38,38,38), white, rgb(23,67,234), ~'"Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif', {font-weight:700});
+.theme-setup(sandstone, rgb(47,48,44), white, rgb(41,72,121), ~'"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif');
+.theme-setup(simplex, rgb(52,52,52), rgb(251,251,251), rgb(191,18,0), ~'"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif');
+.theme-setup(slate, rgb(188,188,188), rgb(29,32,36), rgb(119,125,132));
+.theme-setup(spacelab, rgb(34,34,34), white, rgb(53,83,134), ~'"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif');
+.theme-setup(superhero, rgb(230,230,230), rgb(33,46,64), rgb(208,86,0), ~'"Lato","Helvetica Neue",Helvetica,Arial,sans-serif');
+.theme-setup(united, rgb(38,38,38), white, rgb(205,53,0), ~'"Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif');
+.theme-setup(yeti, rgb(26,26,26), white, rgb(27,119,177), ~'"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif');

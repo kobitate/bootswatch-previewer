@@ -11,6 +11,7 @@
 	"permissions": [
 		"activeTab",
 		"http://maxcdn.bootstrapcdn.com/bootswatch/*",
-		"https://maxcdn.bootstrapcdn.com/bootswatch/*"
+		"https://maxcdn.bootstrapcdn.com/bootswatch/*",
+		"https://cdnjs.cloudflare.com/*"
 	]
 }
