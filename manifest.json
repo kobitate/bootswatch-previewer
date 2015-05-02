@@ -4,14 +4,15 @@
 	"description": "Preview any Bootswatch theme on your Bootstrap website right from the browser!",
 	"version": "0.0",
 	"browser_action": {
-		"default_popup": "popup.html",
+		"default_popup": "popup/popup.html",
 		"default_icon": "icon.png",
 		"default_title": "Bootswatch Previewer"
 	},
 	"permissions": [
-		"activeTab",
-		"http://maxcdn.bootstrapcdn.com/bootswatch/*",
-		"https://maxcdn.bootstrapcdn.com/bootswatch/*",
-		"https://cdnjs.cloudflare.com/*"
+		"activeTab"
+	],
+	"web_accessible_resources": [
+		"themes/*",
+		"lib/fonts/*"
 	]
 }
