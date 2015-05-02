@@ -1,0 +1,167 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,400);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,100);
+@import url(http://fonts.googleapis.com/css?family=Lato:100,400,700);
+@import url(http://fonts.googleapis.com/css?family=News+Cycle:700);
+@import url(http://fonts.googleapis.com/css?family=Raleway:700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400);
+body {
+  min-width: 300px;
+  text-align: center;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+h1 {
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+span {
+  text-transform: uppercase;
+  color: #111;
+  font-size: .9em;
+  margin-bottom: 10px;
+}
+#themes {
+  clear: both;
+  height: 375px;
+}
+#themes .theme-block {
+  width: 20%;
+  margin: 2.5%;
+  float: left;
+  text-transform: capitalize;
+  text-align: center;
+  height: 75px;
+}
+#themes .theme-block .theme-icon {
+  cursor: pointer;
+  width: 100%;
+  font-size: 3em;
+  text-align: center;
+  font-weight: thin;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
+  border-bottom: solid transparent 15px;
+  line-height: 50px;
+  margin-bottom: 3px;
+}
+#themes .theme-block .theme-icon.active {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.7);
+}
+.button {
+  text-align: center;
+  color: white;
+  width: 97%;
+  padding: 5px;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 100;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 5px;
+}
+.button#reset {
+  background-color: #cd3500;
+}
+.button#download {
+  background-color: #3EB34F;
+}
+#themes #theme-cerulean .theme-icon {
+  color: #2c68a0;
+  background-color: white;
+  border-bottom-color: #499fec;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: bold;
+}
+#themes #theme-cosmo .theme-icon {
+  color: #262626;
+  background-color: white;
+  border-bottom-color: #2565e5;
+  font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
+  font-weight: 100;
+}
+#themes #theme-cyborg .theme-icon {
+  color: white;
+  background-color: #070707;
+  border-bottom-color: #2d8ad2;
+  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#themes #theme-darkly .theme-icon {
+  color: white;
+  background-color: #1a1a1a;
+  border-bottom-color: #2c466f;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#themes #theme-flatly .theme-icon {
+  color: #222e40;
+  background-color: white;
+  border-bottom-color: #222e40;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#themes #theme-journal .theme-icon {
+  color: black;
+  background-color: white;
+  border-bottom-color: #de524f;
+  font-family: "News Cycle","Arial Narrow Bold",sans-serif;
+}
+#themes #theme-lumen .theme-icon {
+  color: #2b2b2b;
+  background-color: white;
+  border-bottom-color: #2077b1;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#themes #theme-paper .theme-icon {
+  color: #343434;
+  background-color: white;
+  border-bottom-color: #267df9;
+  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#themes #theme-readable .theme-icon {
+  color: #262626;
+  background-color: white;
+  border-bottom-color: #1743ea;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+#themes #theme-sandstone .theme-icon {
+  color: #2f302c;
+  background-color: white;
+  border-bottom-color: #294879;
+  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#themes #theme-simplex .theme-icon {
+  color: #343434;
+  background-color: #fbfbfb;
+  border-bottom-color: #bf1200;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#themes #theme-slate .theme-icon {
+  color: #bcbcbc;
+  background-color: #1d2024;
+  border-bottom-color: #777d84;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#themes #theme-spacelab .theme-icon {
+  color: #222222;
+  background-color: white;
+  border-bottom-color: #355386;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#themes #theme-superhero .theme-icon {
+  color: #e6e6e6;
+  background-color: #212e40;
+  border-bottom-color: #d05600;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#themes #theme-united .theme-icon {
+  color: #262626;
+  background-color: white;
+  border-bottom-color: #cd3500;
+  font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#themes #theme-yeti .theme-icon {
+  color: #1a1a1a;
+  background-color: white;
+  border-bottom-color: #1b77b1;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
