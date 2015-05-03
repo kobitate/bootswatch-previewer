@@ -23,6 +23,8 @@ function setTheme(t) {
 
 function clearTheme() {
 	chrome.tabs.executeScript(null, {file: "target_page/reset.js"});
+	$("#download").hide();
+	$('.theme-icon.active').toggleClass('active');
 }
 
 function loadThemes() {
@@ -107,7 +109,7 @@ $(document).ready(function(){
 		$("section.active").removeClass('active');
 		
 		$("menu ul li.active").removeClass('active');
-		$(this).addClass('acitve');
+		$(this).addClass('active');
 		
 		var target = $("section#section-" + $(this).data("target"));
 		target.addClass('active');

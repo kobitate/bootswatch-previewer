@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,400);
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,100);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,100);
 @import url(http://fonts.googleapis.com/css?family=Lato:100,400,700);
 @import url(http://fonts.googleapis.com/css?family=News+Cycle:700);
 @import url(http://fonts.googleapis.com/css?family=Raleway:700);
@@ -30,6 +30,10 @@
     }
 }
 
+.material-transition(@speed: .2s) {
+	transition: all @speed cubic-bezier(.55,0,.1,1);
+}
+
 body {
 	min-width: 300px;
 	font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -56,7 +60,19 @@ span {
 
 #main {
 	padding: 10px;
-	min-height: 180px;
+	min-height: 220px;
+	background: @gray;
+}
+
+.card {
+	.material-shadow(1);
+	padding: 10px;
+	margin: 10px 0;
+	background: white;
+	h2 {
+		margin: 0;
+		padding: 0;
+	}
 }
 
 header {
@@ -106,29 +122,62 @@ menu {
 	z-index: 9999;
 	background: white;
 	overflow: hidden;
-	transition: all .2s ease-out;
+	.material-transition(.3s);
 	left: -80%;
+	
 	&.open {
 		left: 0;
 		.material-shadow(4);
+	}
+	
+	#menu-header {
+		background: url('menu-img.jpg');
+		background-size: cover;
+		background-position: center bottom;
+		width: 100%;
+		font-size: 14px;
+		padding: 60px 5px 10px 15px;
+		color: #FFFFFF;
+		
+		#menu-title {
+			font-weight: 500;
+			color: #FFFFFF;
+		}
+			
+		img {
+			background-color: navy;
+			border-radius: 100px;
+			display: block;
+			width: 30px;
+			height: 30px;
+			padding: 5px;
+			margin-bottom: 5px;
+			.material-shadow(3);
+		}
 	}
 	
 	ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		color: rgba(0,0,0,0.87);
+		font-weight: 500;
 		
 		li {
-			text-transform: uppercase;
+			text-transform: capitalize;
 			padding: 7px 15px;
-			font-size: 1.2em;
-			font-weight: 100;
+			font-size: 14px;
+			font-weight: 500;
 			display: block;
 			cursor: pointer;
 			margin-bottom: 2px;
 			
 			&.active {
 				background: @gray;
+			}
+			
+			i {
+				margin-right: 15px;
 			}
 		}
 		
@@ -158,7 +207,8 @@ section:not(.active) {
 			margin-bottom: 3px;
 			clear: both;
 			height: 50px;
-			transition: all .2s cubic-bezier(.55,0,.1,1);
+			line-height: 15px;
+			.material-transition();
 			
 			.material-shadow(1);
 			
@@ -235,8 +285,9 @@ section:not(.active) {
 		text-align: center;
 	}
 	
-	background: @gray;
+	background: white;
 	margin-top:15px;
+	.material-shadow(1);
 	
 	#no-bs-bottom {
 		border: solid 1px darken(@gray, 10%);

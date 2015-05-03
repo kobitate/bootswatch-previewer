@@ -22,7 +22,7 @@ var newsheet = document.getElementById("bootswatch-style");
 
 if (newsheet === null) {
 	var headHTML = document.getElementsByTagName('head')[0].innerHTML;
-	headHTML    += '<!--DO NOT DOWNLOAD THIS VERSION. I have made customizations for it to work with the extension. Please use the Download button.-->'+
+	headHTML    += '<!--DO NOT DOWNLOAD THIS VERSION. I have made customizations for it to work with the extension. Please use the Download button in the popup.-->'+
 	"\n"+
 	'<link id="bootswatch-style" rel="stylesheet" href="" />'+
 	'<input type="hidden" id="last-theme" value="" />';

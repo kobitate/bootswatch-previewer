@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,400);
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,100);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,100);
 @import url(http://fonts.googleapis.com/css?family=Lato:100,400,700);
 @import url(http://fonts.googleapis.com/css?family=News+Cycle:700);
 @import url(http://fonts.googleapis.com/css?family=Raleway:700);
@@ -27,7 +27,18 @@ span {
 }
 #main {
   padding: 10px;
-  min-height: 180px;
+  min-height: 220px;
+  background: #f5f5f5;
+}
+.card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 10px;
+  margin: 10px 0;
+  background: white;
+}
+.card h2 {
+  margin: 0;
+  padding: 0;
 }
 header {
   background: #dd4814;
@@ -72,29 +83,57 @@ menu {
   z-index: 9999;
   background: white;
   overflow: hidden;
-  transition: all 0.2s ease-out;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
   left: -80%;
 }
 menu.open {
   left: 0;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
+menu #menu-header {
+  background: url('menu-img.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  width: 100%;
+  font-size: 14px;
+  padding: 60px 5px 10px 15px;
+  color: #FFFFFF;
+}
+menu #menu-header #menu-title {
+  font-weight: 500;
+  color: #FFFFFF;
+}
+menu #menu-header img {
+  background-color: navy;
+  border-radius: 100px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  margin-bottom: 5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
 menu ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 500;
 }
 menu ul li {
-  text-transform: uppercase;
+  text-transform: capitalize;
   padding: 7px 15px;
-  font-size: 1.2em;
-  font-weight: 100;
+  font-size: 14px;
+  font-weight: 500;
   display: block;
   cursor: pointer;
   margin-bottom: 2px;
 }
 menu ul li.active {
   background: #f5f5f5;
+}
+menu ul li i {
+  margin-right: 15px;
 }
 section:not(.active) {
   display: none;
@@ -118,6 +157,7 @@ section:not(.active) {
   margin-bottom: 3px;
   clear: both;
   height: 50px;
+  line-height: 15px;
   transition: all 0.2s cubic-bezier(0.55, 0, 0.1, 1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
@@ -170,8 +210,9 @@ section:not(.active) {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 #no-bootstrap {
-  background: #f5f5f5;
+  background: white;
   margin-top: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 #no-bootstrap strong {
   display: block;
