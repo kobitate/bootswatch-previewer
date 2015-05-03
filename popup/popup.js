@@ -4,8 +4,6 @@
 // define our themes
 var themes = ['cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];
 
-var pagePrepped = false;
-
 function prepPage() {
 	chrome.tabs.executeScript(null, {file: "target_page/inject.js"});
 }
@@ -15,7 +13,8 @@ function setTheme(t) {
 	var themeFile = chrome.extension.getURL('themes/'+t+'.css');
 	chrome.tabs.executeScript(null, {
 		code: 'document.getElementById("bootswatch-style").setAttribute("href", "'+ themeFile +'");'+
-			'document.getElementById("original-stylesheet").disabled = true;'
+			'document.getElementById("original-stylesheet").disabled = true;'+
+			'document.getElementById("last-theme").setAttribute("value","'+ t +'");'
 	});
 	
 	$("#download").attr('href', "http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/"+ t +"/bootstrap.min.css");
@@ -26,12 +25,9 @@ function clearTheme() {
 	chrome.tabs.executeScript(null, {file: "target_page/reset.js"});
 }
 
-$(document).ready(function(){
-	
-	if (!pagePrepped) {
-		prepPage();
-		pagePrepped = true;
-	}
+function loadThemes() {
+	$("#no-bootstrap").hide();
+	$("#reset,#themes").show();
 	
 	for (var t in themes) {
 		t = themes[t];
@@ -46,15 +42,43 @@ $(document).ready(function(){
 		setTheme($(this).data('theme'));
 		$('.theme-icon.active').toggleClass('active');
 		$(this).find('.theme-icon').toggleClass('active');
+		$("#download").show();
+	});
+}
+
+$(document).ready(function(){
+	
+	prepPage();
+	
+	chrome.runtime.onMessage.addListener(function(message){
+		if (message.method === "bootstrapStatus") {
+			var hasBootstrap = (message.title === "true") ? true : false;
+			
+			loadThemes();
+			
+			if (!hasBootstrap) {
+				$("#reset,#download,#themes").hide();
+				$("#no-bootstrap").show();
+			}
+			
+		}
+		
+		if (message.method === "themeAlreadySet") {
+			$("#theme-" + message.title + " .theme-icon").addClass('active');
+		}
+	});
+	
+	$("#load-anyway").click(function(){
+		$("#reset,#download,#themes").show();
+		$("#no-bootstrap").hide();
 	});
 	
 	$("#reset").click(function(){
 		clearTheme();
 	});
 	
-	$("a:not(#reset)").click(function(){
+	$("a:not(#reset):not(#load-anyway").click(function(){
 		chrome.tabs.create({url: $(this).attr('href')});
 		return false;
 	});
-	
 });

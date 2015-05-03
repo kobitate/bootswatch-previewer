@@ -7,8 +7,13 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400);
 body {
   min-width: 300px;
-  text-align: center;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0;
+  padding-top: 40px;
+  margin: 0;
+}
+.hidden {
+  display: none;
 }
 h1 {
   font-size: 1.5em;
@@ -20,9 +25,26 @@ span {
   font-size: .9em;
   margin-bottom: 10px;
 }
+#main {
+  padding: 10px;
+}
+header {
+  background: #dd4814;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+}
+header h1 {
+  color: white;
+  margin: 0;
+  font-weight: 400;
+}
 #themes {
   clear: both;
-  height: 375px;
+  height: 400px;
 }
 #themes .theme-block {
   width: 20%;
@@ -31,6 +53,7 @@ span {
   text-transform: capitalize;
   text-align: center;
   height: 75px;
+  margin-bottom: 15px;
 }
 #themes .theme-block .theme-icon {
   cursor: pointer;
@@ -53,18 +76,56 @@ span {
   padding: 5px;
   font-size: 1.2em;
   text-transform: uppercase;
-  font-weight: 100;
   letter-spacing: 1px;
   cursor: pointer;
   text-decoration: none;
-  display: block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.2s ease-out;
 }
-.button#reset {
+.button:not(.hidden) {
+  display: block;
+}
+.button.button-green {
+  background-color: #3eb34f;
+}
+.button.button-red {
   background-color: #cd3500;
 }
-.button#download {
-  background-color: #3EB34F;
+.button:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+#no-bootstrap {
+  background: #f5f5f5;
+  margin-top: 15px;
+}
+#no-bootstrap strong {
+  display: block;
+  background: #cd3500;
+  color: white;
+  font-weight: 100;
+  font-size: 1.2em;
+  padding: 5px;
+  text-align: center;
+}
+#no-bootstrap #no-bs-bottom {
+  border: solid 1px #dcdcdc;
+  border-top: none;
+  padding: 5px;
+  font-size: 1.1em;
+  text-align: left;
+}
+#no-bootstrap #no-bs-bottom div {
+  text-align: right;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+#no-bootstrap #no-bs-bottom div .button {
+  display: inline;
+  font-size: .9em;
+}
+#download {
+  margin-bottom: 0;
 }
 #themes #theme-cerulean .theme-icon {
   color: #2c68a0;

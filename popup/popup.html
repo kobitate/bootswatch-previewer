@@ -6,12 +6,29 @@
 	<link rel="stylesheet" type="text/css" href="popup.css" />
 </head>
 <body>
-	<h1>Bootswatch Previewer</h1>
-	<span>by <a href="http://kobitate.com">Kobi Tate</a></span>
-	<div id="themes"></div>
+	<header>
+		<h1>Bootswatch Previewer</h1>
+		<!--span>by <a href="http://kobitate.com">Kobi Tate</a></span-->
+	</header>
 	
-	<a id="reset" href="#" class="button">Reset Page</a>
-	<a id="download" href="" class="button hidden">Download this Theme</a>
+	<div id="main">
+	
+		<div id="themes"></div>
+		
+		<div id="no-bootstrap">
+			<strong>Whoops!</strong>
+			<div id="no-bs-bottom">
+				It looks like this page doesn't have Bootstrap installed! Make sure your Bootstrap CSS file is called "bootstrap.css" or "bootstrap.min.css" and try again.
+				<div>
+					<a id="load-anyway" class="button button-green" href="#">Load Anyway</a>
+				</div>
+				
+			</div>
+		</div>
+		
+		<a id="reset" href="#" class="button button-red">Reset Page</a>
+		<a id="download" href="" class="button button-green">Download this Theme</a>
+	</div>
 	
 </body>
 </html>

@@ -6,10 +6,40 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400);
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400);
 
+@red: rgb(205,53,0);
+@green: #3EB34F;
+@orange: #DD4814;
+
+@gray: #F5F5F5;
+
+.material-shadow(@level: 1){
+    & when (@level = 1) {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+    & when (@level = 2) {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+    & when (@level = 3) {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    & when (@level = 4) {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+    & when (@level = 5) {
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    }
+}
+
 body {
 	min-width: 300px;
-	text-align: center;
 	font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+	padding: 0;
+	padding-top: 40px;
+	margin: 0;
+}
+
+.hidden {
+	display: none;
 }
 
 h1 {
@@ -24,9 +54,29 @@ span {
 	margin-bottom: 10px;
 }
 
+#main {
+	padding: 10px;
+}
+
+header {
+	background: @orange;
+	.material-shadow(2);
+	z-index: 999;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	padding: 10px;
+	
+	h1 {
+		color: white;
+		margin: 0;
+		font-weight: 400;
+	}
+}
+
 #themes {
 	clear: both;
-	height: 375px;
+	height: 400px;
 	.theme-block {
 		width: 20%;
 		margin: 2.5%;
@@ -34,6 +84,7 @@ span {
 		text-transform: capitalize;
 		text-align: center;
 		height: 75px;
+		margin-bottom: 15px;
 	
 		.theme-icon {
 			cursor: pointer;
@@ -61,20 +112,66 @@ span {
 	padding: 5px;
 	font-size: 1.2em;
 	text-transform: uppercase;
-	font-weight: 100;
 	letter-spacing: 1px;
 	cursor: pointer;
 	text-decoration: none;
-	display: block;
-	margin-bottom: 5px;
+	&:not(.hidden) { display: block; }
+	margin-bottom: 10px;
+	.material-shadow(1);
+	transition: all .2s ease-out;
 	
-	&#reset {
-		background-color: rgb(205,53,0);
+	&.button-green {
+		background-color: @green;
 	}
 	
-	&#download {
-		background-color: #3EB34F;
+	&.button-red {
+		background-color: @red;
 	}
+	
+	&:hover {
+		.material-shadow(2);
+	}
+}
+
+
+
+#no-bootstrap {
+	strong {
+		display: block;
+		background: @red;
+		color: white;
+		font-weight: 100;
+		font-size: 1.2em;
+		padding: 5px;
+		text-align: center;
+	}
+	
+	background: @gray;
+	margin-top:15px;
+	
+	#no-bs-bottom {
+		border: solid 1px darken(@gray, 10%);
+		border-top: none;
+		padding: 5px;
+		font-size: 1.1em;
+		text-align: left;
+		
+		div {
+			text-align: right;
+			margin-bottom: 5px;
+			margin-top: 10px;
+			.button {
+				display: inline;
+				font-size: .9em;
+			}
+			
+		}
+		
+	}
+}
+
+#download {
+	margin-bottom: 0;
 }
 
 
