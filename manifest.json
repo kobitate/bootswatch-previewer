@@ -14,5 +14,8 @@
 	"web_accessible_resources": [
 		"themes/*",
 		"lib/fonts/*"
-	]
+	],
+	"icons": {
+		"48": "icon48.png"
+	}
 }
