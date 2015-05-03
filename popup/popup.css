@@ -27,6 +27,7 @@ span {
 }
 #main {
   padding: 10px;
+  min-height: 180px;
 }
 header {
   background: #dd4814;
@@ -42,9 +43,65 @@ header h1 {
   margin: 0;
   font-weight: 400;
 }
+header #hamburger {
+  float: left;
+  font-size: 1.5em;
+  color: white;
+  margin-right: 15px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+#menu-shade {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 9990;
+  position: fixed;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+menu {
+  position: fixed;
+  height: 100%;
+  width: 80%;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  z-index: 9999;
+  background: white;
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+  left: -80%;
+}
+menu.open {
+  left: 0;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+menu ul li {
+  text-transform: uppercase;
+  padding: 7px 15px;
+  font-size: 1.2em;
+  font-weight: 100;
+  display: block;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+menu ul li.active {
+  background: #f5f5f5;
+}
+section:not(.active) {
+  display: none;
+}
 #themes {
   clear: both;
-  height: 400px;
+  height: 350px;
 }
 #themes .theme-block {
   width: 20%;
@@ -52,22 +109,39 @@ header h1 {
   float: left;
   text-transform: capitalize;
   text-align: center;
-  height: 75px;
+  height: 60px;
   margin-bottom: 15px;
 }
 #themes .theme-block .theme-icon {
   cursor: pointer;
   width: 100%;
-  font-size: 3em;
-  text-align: center;
-  font-weight: thin;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
-  border-bottom: solid transparent 15px;
-  line-height: 50px;
   margin-bottom: 3px;
+  clear: both;
+  height: 50px;
+  transition: all 0.2s cubic-bezier(0.55, 0, 0.1, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+#themes .theme-block .theme-icon span {
+  text-transform: none;
+}
+#themes .theme-block .theme-icon .color {
+  height: 10px;
+  margin: 0 5%;
+  width: 90%;
+}
+#themes .theme-block .theme-icon .color.color-half {
+  width: 45%;
+  float: left;
+}
+#themes .theme-block .theme-icon .color.color-half:nth-of-type(odd) {
+  margin-left: 0;
+}
+#themes .theme-block .theme-icon .color.color-half:nth-of-type(even) {
+  margin-right: 0;
 }
 #themes .theme-block .theme-icon.active {
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  transform: translateY(-2px);
 }
 .button {
   text-align: center;
@@ -128,101 +202,356 @@ header h1 {
   margin-bottom: 0;
 }
 #themes #theme-cerulean .theme-icon {
-  color: #2c68a0;
-  background-color: white;
-  border-bottom-color: #499fec;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-weight: bold;
+  background-color: #ffffff;
+}
+#themes #theme-cerulean .theme-icon span {
+  color: #317eac !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#themes #theme-cerulean .theme-icon .primary {
+  background-color: #53b4eb;
+}
+#themes #theme-cerulean .theme-icon .success {
+  background-color: #88c049;
+}
+#themes #theme-cerulean .theme-icon .info {
+  background-color: #04519a;
+}
+#themes #theme-cerulean .theme-icon .warning {
+  background-color: #fe6707;
+}
+#themes #theme-cerulean .theme-icon .danger {
+  background-color: #e02b31;
 }
 #themes #theme-cosmo .theme-icon {
-  color: #262626;
-  background-color: white;
-  border-bottom-color: #2565e5;
-  font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
+  background-color: #ffffff;
   font-weight: 100;
 }
+#themes #theme-cosmo .theme-icon span {
+  color: #333333 !important;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+}
+#themes #theme-cosmo .theme-icon .primary {
+  background-color: #2780e3;
+}
+#themes #theme-cosmo .theme-icon .success {
+  background-color: #3fb618;
+}
+#themes #theme-cosmo .theme-icon .info {
+  background-color: #9954bb;
+}
+#themes #theme-cosmo .theme-icon .warning {
+  background-color: #ff7518;
+}
+#themes #theme-cosmo .theme-icon .danger {
+  background-color: #ff0039;
+}
 #themes #theme-cyborg .theme-icon {
-  color: white;
-  background-color: #070707;
-  border-bottom-color: #2d8ad2;
-  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #060606;
+}
+#themes #theme-cyborg .theme-icon span {
+  color: #ffffff !important;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+#themes #theme-cyborg .theme-icon .primary {
+  background-color: #2a9fd6;
+}
+#themes #theme-cyborg .theme-icon .success {
+  background-color: #77b300;
+}
+#themes #theme-cyborg .theme-icon .info {
+  background-color: #9933cc;
+}
+#themes #theme-cyborg .theme-icon .warning {
+  background-color: #ff8800;
+}
+#themes #theme-cyborg .theme-icon .danger {
+  background-color: #cc0000;
 }
 #themes #theme-darkly .theme-icon {
-  color: white;
-  background-color: #1a1a1a;
-  border-bottom-color: #2c466f;
-  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #222222;
+}
+#themes #theme-darkly .theme-icon span {
+  color: #ffffff !important;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+}
+#themes #theme-darkly .theme-icon .primary {
+  background-color: #375a7f;
+}
+#themes #theme-darkly .theme-icon .success {
+  background-color: #00bc8c;
+}
+#themes #theme-darkly .theme-icon .info {
+  background-color: #3498db;
+}
+#themes #theme-darkly .theme-icon .warning {
+  background-color: #f39c12;
+}
+#themes #theme-darkly .theme-icon .danger {
+  background-color: #e74c3c;
 }
 #themes #theme-flatly .theme-icon {
-  color: #222e40;
-  background-color: white;
-  border-bottom-color: #222e40;
-  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #ffffff;
+}
+#themes #theme-flatly .theme-icon span {
+  color: #2c3e50 !important;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+}
+#themes #theme-flatly .theme-icon .primary {
+  background-color: #2c3e50;
+}
+#themes #theme-flatly .theme-icon .success {
+  background-color: #18bc9c;
+}
+#themes #theme-flatly .theme-icon .info {
+  background-color: #3498db;
+}
+#themes #theme-flatly .theme-icon .warning {
+  background-color: #f39c12;
+}
+#themes #theme-flatly .theme-icon .danger {
+  background-color: #e74c3c;
 }
 #themes #theme-journal .theme-icon {
-  color: black;
-  background-color: white;
-  border-bottom-color: #de524f;
-  font-family: "News Cycle","Arial Narrow Bold",sans-serif;
+  background-color: #ffffff;
+}
+#themes #theme-journal .theme-icon span {
+  color: #000000 !important;
+  font-family: "News Cycle","Arial Narrow Bold", Helvetica, Arial, sans-serif;
+}
+#themes #theme-journal .theme-icon .primary {
+  background-color: #eb6864;
+}
+#themes #theme-journal .theme-icon .success {
+  background-color: #22b24c;
+}
+#themes #theme-journal .theme-icon .info {
+  background-color: #336699;
+}
+#themes #theme-journal .theme-icon .warning {
+  background-color: #f5e625;
+}
+#themes #theme-journal .theme-icon .danger {
+  background-color: #f57a00;
 }
 #themes #theme-lumen .theme-icon {
-  color: #2b2b2b;
-  background-color: white;
-  border-bottom-color: #2077b1;
-  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+}
+#themes #theme-lumen .theme-icon span {
+  color: #333333 !important;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+}
+#themes #theme-lumen .theme-icon .primary {
+  background-color: #158cba;
+}
+#themes #theme-lumen .theme-icon .success {
+  background-color: #28b62c;
+}
+#themes #theme-lumen .theme-icon .info {
+  background-color: #75caeb;
+}
+#themes #theme-lumen .theme-icon .warning {
+  background-color: #ff851b;
+}
+#themes #theme-lumen .theme-icon .danger {
+  background-color: #ff4136;
 }
 #themes #theme-paper .theme-icon {
-  color: #343434;
-  background-color: white;
-  border-bottom-color: #267df9;
-  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #ffffff;
+}
+#themes #theme-paper .theme-icon span {
+  color: #444444 !important;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+#themes #theme-paper .theme-icon .primary {
+  background-color: #2196f3;
+}
+#themes #theme-paper .theme-icon .success {
+  background-color: #4caf50;
+}
+#themes #theme-paper .theme-icon .info {
+  background-color: #9c27b0;
+}
+#themes #theme-paper .theme-icon .warning {
+  background-color: #ff9800;
+}
+#themes #theme-paper .theme-icon .danger {
+  background-color: #e51c23;
 }
 #themes #theme-readable .theme-icon {
-  color: #262626;
-  background-color: white;
-  border-bottom-color: #1743ea;
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
   font-weight: 700;
 }
+#themes #theme-readable .theme-icon span {
+  color: #333333 !important;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+}
+#themes #theme-readable .theme-icon .primary {
+  background-color: #4582ec;
+}
+#themes #theme-readable .theme-icon .success {
+  background-color: #3fad46;
+}
+#themes #theme-readable .theme-icon .info {
+  background-color: #5bc0de;
+}
+#themes #theme-readable .theme-icon .warning {
+  background-color: #f0ad4e;
+}
+#themes #theme-readable .theme-icon .danger {
+  background-color: #d9534f;
+}
 #themes #theme-sandstone .theme-icon {
-  color: #2f302c;
-  background-color: white;
-  border-bottom-color: #294879;
-  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #ffffff;
+}
+#themes #theme-sandstone .theme-icon span {
+  color: #3e3f3a !important;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+#themes #theme-sandstone .theme-icon .primary {
+  background-color: #325d88;
+}
+#themes #theme-sandstone .theme-icon .success {
+  background-color: #93c54b;
+}
+#themes #theme-sandstone .theme-icon .info {
+  background-color: #29abe0;
+}
+#themes #theme-sandstone .theme-icon .warning {
+  background-color: #f47c3c;
+}
+#themes #theme-sandstone .theme-icon .danger {
+  background-color: #d9534f;
 }
 #themes #theme-simplex .theme-icon {
-  color: #343434;
-  background-color: #fbfbfb;
-  border-bottom-color: #bf1200;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #fcfcfc;
+}
+#themes #theme-simplex .theme-icon span {
+  color: #444444 !important;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+#themes #theme-simplex .theme-icon .primary {
+  background-color: #e22510;
+}
+#themes #theme-simplex .theme-icon .success {
+  background-color: #479508;
+}
+#themes #theme-simplex .theme-icon .info {
+  background-color: #029bd0;
+}
+#themes #theme-simplex .theme-icon .warning {
+  background-color: #9c48a0;
+}
+#themes #theme-simplex .theme-icon .danger {
+  background-color: #d9831f;
 }
 #themes #theme-slate .theme-icon {
-  color: #bcbcbc;
-  background-color: #1d2024;
-  border-bottom-color: #777d84;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #272b30;
+}
+#themes #theme-slate .theme-icon span {
+  color: #c8c8c8 !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#themes #theme-slate .theme-icon .primary {
+  background-color: #888f94;
+}
+#themes #theme-slate .theme-icon .success {
+  background-color: #72ca72;
+}
+#themes #theme-slate .theme-icon .info {
+  background-color: #68c5e1;
+}
+#themes #theme-slate .theme-icon .warning {
+  background-color: #fa9d1a;
+}
+#themes #theme-slate .theme-icon .danger {
+  background-color: #f06e6b;
 }
 #themes #theme-spacelab .theme-icon {
-  color: #222222;
-  background-color: white;
-  border-bottom-color: #355386;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+}
+#themes #theme-spacelab .theme-icon span {
+  color: #2d2d2d !important;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+#themes #theme-spacelab .theme-icon .primary {
+  background-color: #5b84b0;
+}
+#themes #theme-spacelab .theme-icon .success {
+  background-color: #58d33c;
+}
+#themes #theme-spacelab .theme-icon .info {
+  background-color: #60b0f6;
+}
+#themes #theme-spacelab .theme-icon .warning {
+  background-color: #ef8e15;
+}
+#themes #theme-spacelab .theme-icon .danger {
+  background-color: #f21614;
 }
 #themes #theme-superhero .theme-icon {
-  color: #e6e6e6;
-  background-color: #212e40;
-  border-bottom-color: #d05600;
-  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #2b3e50;
+}
+#themes #theme-superhero .theme-icon span {
+  color: #ebebeb !important;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+}
+#themes #theme-superhero .theme-icon .primary {
+  background-color: #df691a;
+}
+#themes #theme-superhero .theme-icon .success {
+  background-color: #5cb85c;
+}
+#themes #theme-superhero .theme-icon .info {
+  background-color: #5bc0de;
+}
+#themes #theme-superhero .theme-icon .warning {
+  background-color: #f0ad4e;
+}
+#themes #theme-superhero .theme-icon .danger {
+  background-color: #d9534f;
 }
 #themes #theme-united .theme-icon {
-  color: #262626;
-  background-color: white;
-  border-bottom-color: #cd3500;
-  font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+}
+#themes #theme-united .theme-icon span {
+  color: #333333 !important;
+  font-family: "Ubuntu", Helvetica, Arial, sans-serif;
+}
+#themes #theme-united .theme-icon .primary {
+  background-color: #dd4814;
+}
+#themes #theme-united .theme-icon .success {
+  background-color: #38b44a;
+}
+#themes #theme-united .theme-icon .info {
+  background-color: #772953;
+}
+#themes #theme-united .theme-icon .warning {
+  background-color: #efb73e;
+}
+#themes #theme-united .theme-icon .danger {
+  background-color: #df382c;
 }
 #themes #theme-yeti .theme-icon {
-  color: #1a1a1a;
-  background-color: white;
-  border-bottom-color: #1b77b1;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+}
+#themes #theme-yeti .theme-icon span {
+  color: #222222 !important;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+#themes #theme-yeti .theme-icon .primary {
+  background-color: #008cba;
+}
+#themes #theme-yeti .theme-icon .success {
+  background-color: #43ac6a;
+}
+#themes #theme-yeti .theme-icon .info {
+  background-color: #5bc0de;
+}
+#themes #theme-yeti .theme-icon .warning {
+  background-color: #e99002;
+}
+#themes #theme-yeti .theme-icon .danger {
+  background-color: #f04124;
 }

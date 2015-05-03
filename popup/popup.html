@@ -2,32 +2,55 @@
 <html>
 <head>
 	<script src="../lib/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	
 	<script src="popup.js"></script>
 	<link rel="stylesheet" type="text/css" href="popup.css" />
 </head>
 <body>
 	<header>
+		<div id="hamburger"><i class="fa fa-bars"></i></div>
 		<h1>Bootswatch Previewer</h1>
-		<!--span>by <a href="http://kobitate.com">Kobi Tate</a></span-->
 	</header>
+	
+	<div id="menu-shade"></div>
+	
+	<menu>
+		<ul>
+			<li data-target="themes"class="active"><i class="fa fa-fw fa-paint-brush"></i> Themes</li>
+			<li data-target="about"><i class="fa fa-fw fa-info"></i> About</li>
+			<li data-target="help"><i class="fa fa-fw fa-question"></i> Help</li>
+		</ul>
+	</menu>
 	
 	<div id="main">
 	
-		<div id="themes"></div>
-		
-		<div id="no-bootstrap">
-			<strong>Whoops!</strong>
-			<div id="no-bs-bottom">
-				It looks like this page doesn't have Bootstrap installed! If you're the developer of this site, make sure your Bootstrap CSS file is called "bootstrap.css" or "bootstrap.min.css" and try again.
-				<div>
-					<a id="load-anyway" class="button button-green" href="#">Load Anyway</a>
+		<section id="section-themes" class="active">
+			<div id="themes"></div>
+			
+			<div id="no-bootstrap">
+				<strong>Whoops!</strong>
+				<div id="no-bs-bottom">
+					It looks like this page doesn't have Bootstrap installed! If you're the developer of this site, make sure your Bootstrap CSS file is called "bootstrap.css" or "bootstrap.min.css" and try again.
+					<div>
+						<a id="load-anyway" class="button button-green" href="#">Load Anyway</a>
+					</div>
+					
 				</div>
-				
 			</div>
-		</div>
+			
+			<a id="reset" href="#" class="button button-red">Reset Page</a>
+			<a id="download" href="" class="button button-green">Download this Theme</a>
+		</section>
 		
-		<a id="reset" href="#" class="button button-red">Reset Page</a>
-		<a id="download" href="" class="button button-green">Download this Theme</a>
+		<section id="section-about">
+			About
+		</section>
+		
+		<section id="section-help">
+			Help
+		</section>
+		
 	</div>
 	
 </body>

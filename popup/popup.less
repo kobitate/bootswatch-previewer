@@ -36,7 +36,6 @@ body {
 	padding: 0;
 	padding-top: 40px;
 	margin: 0;
-	//background: @gray;
 }
 
 .hidden {
@@ -57,6 +56,7 @@ span {
 
 #main {
 	padding: 10px;
+	min-height: 180px;
 }
 
 header {
@@ -73,33 +73,121 @@ header {
 		margin: 0;
 		font-weight: 400;
 	}
+	
+	#hamburger {
+		float:left;
+		font-size: 1.5em;
+		color: white;
+		margin-right: 15px;
+		margin-left: 5px;
+		cursor: pointer;
+	}
+}
+
+#menu-shade {
+	height: 100%;
+	width: 100%;
+	background: rgba(0,0,0,0.3);
+	z-index: 9990;
+	position: fixed;
+	top: 0;
+	margin: 0;
+	padding: 0;
+	display: none;
+}
+
+menu {
+	position: fixed;
+	height: 100%;
+	width: 80%;
+	padding: 0;
+	margin: 0;
+	top: 0;
+	z-index: 9999;
+	background: white;
+	overflow: hidden;
+	transition: all .2s ease-out;
+	left: -80%;
+	&.open {
+		left: 0;
+		.material-shadow(4);
+	}
+	
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		
+		li {
+			text-transform: uppercase;
+			padding: 7px 15px;
+			font-size: 1.2em;
+			font-weight: 100;
+			display: block;
+			cursor: pointer;
+			margin-bottom: 2px;
+			
+			&.active {
+				background: @gray;
+			}
+		}
+		
+	}
+}
+
+section:not(.active) {
+	display: none;
 }
 
 #themes {
 	clear: both;
-	height: 400px;
+	height: 350px;
 	.theme-block {
 		width: 20%;
 		margin: 2.5%;
 		float: left;
 		text-transform: capitalize;
 		text-align: center;
-		height: 75px;
+		height: 60px;
 		margin-bottom: 15px;
 	
 		.theme-icon {
 			cursor: pointer;
 			width: 100%;
-			font-size: 3em;
-			text-align: center;
-			font-weight: thin;
-			box-shadow: 0 0 0 2px rgba(0,0,0,0.3);
-			border-bottom: solid transparent 15px;
-			line-height: 50px;
+			//box-shadow: 0 0 0 2px rgba(0,0,0,0.3);
 			margin-bottom: 3px;
+			clear: both;
+			height: 50px;
+			transition: all .2s cubic-bezier(.55,0,.1,1);
+			
+			.material-shadow(1);
+			
+			span {
+				text-transform: none;
+			}
+			
+			.color {
+				height: 10px;
+				margin: 0 5%;
+				width: 90%;
+				
+				&.color-half {
+					width: 45%;
+					float: left;
+					&:nth-of-type(odd) {
+						margin-left: 0;
+					}
+					&:nth-of-type(even) {
+						margin-right: 0;
+					}
+				}
+				
+			}
 			
 			&.active {
-				box-shadow: 0 0 0 2px rgba(0,0,0,0.7);
+				//box-shadow: 0 0 0 2px rgba(0,0,0,0.7);
+				.material-shadow(3);
+				transform: translateY(-2px);
 			}
 			
 		}
@@ -175,30 +263,54 @@ header {
 	margin-bottom: 0;
 }
 
-
-.theme-setup(@name, @text-color, @background-color, @accent-color, @font:~'"Helvetica Neue",Helvetica,Arial,sans-serif', @rules:{}) {
+.theme-setup(@name, @bg, @text, @primary, @success, @info, @warning, @danger, @font:~'"Helvetica Neue"', @rules:{}) {
 	#themes #theme-@{name} .theme-icon {
-		color: @text-color;
-		background-color: @background-color;
-		border-bottom-color: @accent-color;
-		font-family: @font;
+		background-color: @bg;
+		span {
+			color: @text !important;
+			font-family: @font,Helvetica,Arial,sans-serif;
+		}
+		
 		@rules();
+		
+		.primary {
+			background-color: @primary;
+		}
+		
+		.success {
+			background-color: @success;
+		}
+		
+		.info {
+			background-color: @info;
+		}
+		
+		.warning {
+			background-color: @warning;
+		}
+		
+		.danger {
+			background-color: @danger;
+		}
 	}
 }
 
-.theme-setup(cerulean, rgb(44,104,160), white, rgb(73,159,236), @rules:{font-weight: bold});
-.theme-setup(cosmo, rgb(38,38,38), white, rgb(37,101,229), ~'"Source Sans Pro",Calibri,Candara,Arial,sans-serif', {font-weight: 100});
-.theme-setup(cyborg, white, rgb(7,7,7), rgb(45,138,210), ~'"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif');
-.theme-setup(darkly, white, rgb(26,26,26), rgb(44,70,111), ~'"Lato","Helvetica Neue",Helvetica,Arial,sans-serif');
-.theme-setup(flatly, rgb(34,46,64), white, rgb(34,46,64), ~'"Lato","Helvetica Neue",Helvetica,Arial,sans-serif');
-.theme-setup(journal, black, white, rgb(222,82,79), ~'"News Cycle","Arial Narrow Bold",sans-serif');
-.theme-setup(lumen, rgb(43,43,43), white, rgb(32,119,177), ~'"Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif');
-.theme-setup(paper, rgb(52,52,52), white, rgb(38,125,249), ~'"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif');
-.theme-setup(readable, rgb(38,38,38), white, rgb(23,67,234), ~'"Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif', {font-weight:700});
-.theme-setup(sandstone, rgb(47,48,44), white, rgb(41,72,121), ~'"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif');
-.theme-setup(simplex, rgb(52,52,52), rgb(251,251,251), rgb(191,18,0), ~'"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif');
-.theme-setup(slate, rgb(188,188,188), rgb(29,32,36), rgb(119,125,132));
-.theme-setup(spacelab, rgb(34,34,34), white, rgb(53,83,134), ~'"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif');
-.theme-setup(superhero, rgb(230,230,230), rgb(33,46,64), rgb(208,86,0), ~'"Lato","Helvetica Neue",Helvetica,Arial,sans-serif');
-.theme-setup(united, rgb(38,38,38), white, rgb(205,53,0), ~'"Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif');
-.theme-setup(yeti, rgb(26,26,26), white, rgb(27,119,177), ~'"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif');
+// SO MANY HEX CODES UGH
+//			 name 		bg		 text 	  primary  success  info	 warning  danger
+.theme-setup(cerulean, 	#FFFFFF, #317EAC, #53B4EB, #88C049, #04519A, #FE6707, #E02B31);
+.theme-setup(cosmo, 	#FFFFFF, #333333, #2780E3, #3FB618, #9954BB, #FF7518, #FF0039, ~'"Source Sans Pro"', {font-weight: 100});
+.theme-setup(cyborg,	#060606, #FFFFFF, #2A9FD6, #77B300, #9933CC, #FF8800, #CC0000, ~'"Roboto"');
+.theme-setup(darkly,	#222222, #FFFFFF, #375A7F, #00BC8C, #3498DB, #F39C12, #E74C3C, ~'"Lato"');
+.theme-setup(flatly,	#FFFFFF, #2C3E50, #2C3E50, #18BC9C, #3498DB, #F39C12, #E74C3C, ~'"Lato"');
+.theme-setup(journal,	#FFFFFF, #000000, #EB6864, #22B24C, #336699, #F5E625, #F57A00, ~'"News Cycle","Arial Narrow Bold"');
+.theme-setup(lumen, 	#FFFFFF, #333333, #158CBA, #28B62C, #75CAEB, #FF851B, #FF4136, ~'"Source Sans Pro"');
+.theme-setup(paper, 	#FFFFFF, #444444, #2196F3, #4CAF50, #9C27B0, #FF9800, #E51C23, ~'"Roboto"');
+.theme-setup(readable, 	#FFFFFF, #333333, #4582EC, #3FAD46, #5BC0DE, #F0AD4E, #D9534F, ~'"Raleway"', {font-weight: 700});
+.theme-setup(sandstone, #FFFFFF, #3E3F3A, #325D88, #93C54B, #29ABE0, #F47C3C, #D9534F, ~'"Roboto"');
+.theme-setup(simplex,	#FCFCFC, #444444, #E22510, #479508, #029BD0, #9C48A0, #D9831F, ~'"Open Sans"');
+.theme-setup(slate, 	#272B30, #C8C8C8, #888F94, #72CA72, #68C5E1, #FA9D1A, #F06E6B);
+.theme-setup(spacelab, 	#FFFFFF, #2D2D2D, #5B84B0, #58D33C, #60B0F6, #EF8E15, #F21614, ~'"Open Sans"');
+.theme-setup(superhero, #2B3E50, #EBEBEB, #DF691A, #5CB85C, #5BC0DE, #F0AD4E, #D9534F, ~'"Lato"');
+.theme-setup(united, 	#FFFFFF, #333333, #DD4814, #38B44A, #772953, #EFB73E, #DF382C, ~'"Ubuntu"');
+.theme-setup(yeti, 		#FFFFFF, #222222, #008CBA, #43AC6A, #5BC0DE, #E99002, #F04124, ~'"Open Sans"');
+	   

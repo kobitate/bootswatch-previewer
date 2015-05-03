@@ -35,7 +35,18 @@ function loadThemes() {
 			continue;
 		}
 		
-		$("#themes").append('<div class="theme-block" id="theme-' + t + '" data-theme="' + t + '"><div class="theme-icon">'+ t.toUpperCase().charAt(0) +'</div>' + t + '</div>');
+		$("#themes").append(''+
+			'<div class="theme-block" id="theme-' + t + '" data-theme="' + t + '">'+
+				'<div class="theme-icon">'+
+					'<span>Sample</span>'+
+					'<div class="color primary"></div>'+
+					'<div class="color color-half success"></div>'+
+					'<div class="color color-half info"></div>'+
+					'<div class="color color-half warning"></div>'+
+					'<div class="color color-half danger"></div>'+
+				'</div>' +
+				t + 
+			'</div>');
 	}
 	
 	$(".theme-block").click(function(){
@@ -81,4 +92,28 @@ $(document).ready(function(){
 		chrome.tabs.create({url: $(this).attr('href')});
 		return false;
 	});
+	
+	$("#hamburger").click(function(){
+		$("menu").toggleClass("open");
+		$("#menu-shade").fadeIn();
+	});
+	
+	$("#menu-shade").click(function(){
+		$("menu").toggleClass("open");
+		$("#menu-shade").fadeOut();
+	});
+	
+	$("menu ul li").click(function(){
+		$("section.active").removeClass('active');
+		
+		$("menu ul li.active").removeClass('active');
+		$(this).addClass('acitve');
+		
+		var target = $("section#section-" + $(this).data("target"));
+		target.addClass('active');
+		
+		$("menu").toggleClass("open");
+		$("#menu-shade").fadeOut();
+	});
+	
 });
