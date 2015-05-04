@@ -9,7 +9,6 @@ body {
   min-width: 300px;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0;
-  padding-top: 40px;
   margin: 0;
 }
 .hidden {
@@ -19,16 +18,11 @@ h1 {
   font-size: 1.5em;
   margin-bottom: 0;
 }
-span {
-  text-transform: uppercase;
-  color: #111;
-  font-size: .9em;
-  margin-bottom: 10px;
-}
 #main {
   padding: 10px;
   min-height: 220px;
   background: #f5f5f5;
+  padding-top: 50px;
 }
 .card {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -39,6 +33,47 @@ span {
 .card h2 {
   margin: 0;
   padding: 0;
+}
+.dialog {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  display: table-cell;
+}
+.dialog .dialog-inner {
+  background: white;
+  vertical-align: middle;
+  width: 60%;
+  margin: 50% 15%;
+  position: absolute;
+  padding: 15px;
+  padding-top: 5px;
+  color: rgba(0, 0, 0, 0.7);
+  line-height: 18px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.dialog .dialog-inner p {
+  padding: 0;
+}
+.dialog .dialog-inner .dialog-buttons {
+  text-align: right;
+}
+.dialog .dialog-inner .dialog-buttons a {
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: .9em;
+  margin-left: 5px;
+}
+.dialog .dialog-inner .dialog-buttons a:link {
+  color: #2B98F0;
+}
+.dialog .dialog-inner .dialog-buttons a:active {
+  background: #f5f5f5;
 }
 header {
   background: #dd4814;
@@ -56,11 +91,12 @@ header h1 {
 }
 header #hamburger {
   float: left;
-  font-size: 1.5em;
+  font-size: 1.7em;
   color: white;
   margin-right: 15px;
   margin-left: 5px;
   cursor: pointer;
+  margin-top: -5px;
 }
 #menu-shade {
   height: 100%;
@@ -129,6 +165,16 @@ menu ul li {
   cursor: pointer;
   margin-bottom: 2px;
 }
+menu ul li .md {
+  font-size: 16px;
+  margin-top: -10px;
+  display: inline-block;
+}
+menu ul li.menu-divider {
+  border-bottom: solid 2px #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
 menu ul li.active {
   background: #f5f5f5;
 }
@@ -140,15 +186,15 @@ section:not(.active) {
 }
 #themes {
   clear: both;
-  height: 350px;
+  height: 370px;
 }
 #themes .theme-block {
-  width: 20%;
-  margin: 2.5%;
+  width: 22%;
+  margin: 1.5%;
   float: left;
   text-transform: capitalize;
   text-align: center;
-  height: 60px;
+  height: 70px;
   margin-bottom: 15px;
 }
 #themes .theme-block .theme-icon {
@@ -156,18 +202,25 @@ section:not(.active) {
   width: 100%;
   margin-bottom: 3px;
   clear: both;
-  height: 50px;
+  height: 60px;
   line-height: 15px;
   transition: all 0.2s cubic-bezier(0.55, 0, 0.1, 1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  display: block;
 }
 #themes .theme-block .theme-icon span {
   text-transform: none;
+  display: block;
+  height: 18px;
+  padding-top: 6px;
 }
 #themes .theme-block .theme-icon .color {
   height: 10px;
   margin: 0 5%;
   width: 90%;
+}
+#themes .theme-block .theme-icon .color.primary {
+  margin-top: 2px;
 }
 #themes .theme-block .theme-icon .color.color-half {
   width: 45%;
@@ -195,7 +248,7 @@ section:not(.active) {
   text-decoration: none;
   margin-bottom: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.2s ease-out;
+  transition: all 0.2s cubic-bezier(0.55, 0, 0.1, 1);
 }
 .button:not(.hidden) {
   display: block;
@@ -209,35 +262,18 @@ section:not(.active) {
 .button:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-#no-bootstrap {
-  background: white;
-  margin-top: 15px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+.button-group .button {
+  width: 45%;
+  float: left;
 }
-#no-bootstrap strong {
-  display: block;
-  background: #cd3500;
-  color: white;
-  font-weight: 100;
-  font-size: 1.2em;
-  padding: 5px;
-  text-align: center;
+.button-group .button:nth-child(1) {
+  margin-right: 4px;
 }
-#no-bootstrap #no-bs-bottom {
-  border: solid 1px #dcdcdc;
-  border-top: none;
-  padding: 5px;
-  font-size: 1.1em;
-  text-align: left;
+.button-group .button:nth-child(2) {
+  margin-left: 4px;
 }
-#no-bootstrap #no-bs-bottom div {
-  text-align: right;
-  margin-bottom: 5px;
-  margin-top: 10px;
-}
-#no-bootstrap #no-bs-bottom div .button {
-  display: inline;
-  font-size: .9em;
+.button-group#theme-specific-actions {
+  display: none;
 }
 #download {
   margin-bottom: 0;

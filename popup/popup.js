@@ -12,9 +12,10 @@ function setTheme(t) {
 		
 	var themeFile = chrome.extension.getURL('themes/'+t+'.css');
 	chrome.tabs.executeScript(null, {
-		code: 'document.getElementById("bootswatch-style").setAttribute("href", "'+ themeFile +'");'+
-			'document.getElementById("original-stylesheet").disabled = true;'+
-			'document.getElementById("last-theme").setAttribute("value","'+ t +'");'
+		code: 'document.getElementById("bootswatch-style").setAttribute("href", "'+ themeFile +'");'+"\n"+
+			'var originalSheet=document.getElementById("original-stylesheet");'+"\n"+
+			'if (originalSheet!=null) { originalSheet.disabled = true; }'+"\n"+
+			'document.getElementById("last-theme").value = \''+ t +'\';'
 	});
 	
 	$("#download").attr('href', "http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/"+ t +"/bootstrap.min.css");
@@ -23,13 +24,13 @@ function setTheme(t) {
 
 function clearTheme() {
 	chrome.tabs.executeScript(null, {file: "target_page/reset.js"});
-	$("#download").hide();
+	$("#theme-specific-actions").hide();
 	$('.theme-icon.active').toggleClass('active');
 }
 
 function loadThemes() {
 	$("#no-bootstrap").hide();
-	$("#reset,#themes").show();
+	$("#theme-actions").show();
 	
 	for (var t in themes) {
 		t = themes[t];
@@ -55,7 +56,7 @@ function loadThemes() {
 		setTheme($(this).data('theme'));
 		$('.theme-icon.active').toggleClass('active');
 		$(this).find('.theme-icon').toggleClass('active');
-		$("#download").show();
+		$("#theme-specific-actions").show();
 	});
 }
 
@@ -70,19 +71,21 @@ $(document).ready(function(){
 			loadThemes();
 			
 			if (!hasBootstrap) {
-				$("#reset,#download,#themes").hide();
 				$("#no-bootstrap").show();
 			}
 			
 		}
 		
 		if (message.method === "themeAlreadySet") {
+			console.log(message.title);
 			$("#theme-" + message.title + " .theme-icon").addClass('active');
+			$("#no-bootstrap").hide();
+			$("#theme-specific-actions").show();
 		}
 	});
 	
 	$("#load-anyway").click(function(){
-		$("#reset,#download,#themes").show();
+		$("#reset,#theme-actions").show();
 		$("#no-bootstrap").hide();
 	});
 	
@@ -90,9 +93,13 @@ $(document).ready(function(){
 		clearTheme();
 	});
 	
-	$("a:not(#reset):not(#load-anyway").click(function(){
-		chrome.tabs.create({url: $(this).attr('href')});
-		return false;
+	$("a").click(function(){
+		var href = $(this).attr('href');
+		
+		if (href != "#") {
+			chrome.tabs.create({url: $(this).attr('href')});
+			return false;
+		}
 	});
 	
 	$("#hamburger").click(function(){
@@ -116,6 +123,10 @@ $(document).ready(function(){
 		
 		$("menu").toggleClass("open");
 		$("#menu-shade").fadeOut();
+	});
+	
+	$("#load-anyway-cancel").click(function(){
+		window.close();
 	});
 	
 });
