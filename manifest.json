@@ -9,7 +9,8 @@
 		"default_title": "Bootswatch Previewer"
 	},
 	"permissions": [
-		"activeTab"
+		"activeTab",
+		"storage"
 	],
 	"web_accessible_resources": [
 		"themes/*",

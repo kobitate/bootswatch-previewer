@@ -270,6 +270,12 @@ section:not(.active) {
 		text-align: center;
 		height: 70px;
 		margin-bottom: 15px;
+		
+		&.theme-faved {
+			.theme-name {
+				font-weight: bold;
+			}
+		}
 	
 		.theme-icon {
 			cursor: pointer;
@@ -349,6 +355,10 @@ section:not(.active) {
 	}
 }
 
+.button-ripple {
+	pointer-events: none;
+}
+
 .button-group {
 	.button {
 		width: 45%;
@@ -364,7 +374,7 @@ section:not(.active) {
 	}
 	
 	&#theme-specific-actions {
-		display: none;
+		//display: none;
 	}
 }
 
