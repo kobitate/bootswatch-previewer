@@ -1,5 +1,14 @@
 // @codekit-prepend "../js/fave_functions.js","../js/theme_functions.js"
 
+function snackbar(text){
+	setTimeout(function(){
+		$("#snackbar").text(text).addClass('open');
+	}, 500);
+	setTimeout(function(){
+		$("#snackbar").removeClass('open');
+	}, 3000);
+}
+
 $(document).ready(function(){
 	
 	prepPage();
@@ -104,7 +113,7 @@ $(document).ready(function(){
 		$("menu").toggleClass("open");
 		$("#menu-shade").fadeOut();
 		
-		if ($(".theme-block.theme-faved").length == 0) {
+		if ($(".theme-block.theme-faved").length === 0) {
 			$("#no-faves").show();
 		}
 		
@@ -136,6 +145,7 @@ $(document).ready(function(){
 		clearFaves();
 		$("#fave-clear-verify").hide();
 		$(".theme-block.theme-faved").removeClass("theme-faved");
+		snackbar("Favorites Cleared!");
 	});
 	
 });

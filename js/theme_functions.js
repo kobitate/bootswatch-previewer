@@ -74,11 +74,11 @@ function loadThemes() {
 		//$("#theme-specific-actions").show();
 	}).each(function(){
 		
-		var t = $(this).data('theme')
+		var t = $(this).data('theme');
 		checkFaved(t, function(isFaved){
-			console.log("hi");
+			//console.log("hi");
 			if (isFaved) {
-				console.log("hello");
+				//console.log("hello");
 				$("#theme-"+t).addClass('theme-faved');
 			}
 		});

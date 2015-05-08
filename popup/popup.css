@@ -73,7 +73,8 @@ h1 {
   font-size: .9em;
   margin-left: 5px;
 }
-.dialog .dialog-inner .dialog-buttons a:link {
+.dialog .dialog-inner .dialog-buttons a:link,
+.dialog .dialog-inner .dialog-buttons a:visited {
   color: #2B98F0;
 }
 .dialog .dialog-inner .dialog-buttons a:active {
@@ -298,6 +299,22 @@ section:not(.active) {
 }
 #download {
   margin-bottom: 0;
+}
+#snackbar {
+  background: #323232;
+  color: white;
+  border-radius: 2px 2px 0 0;
+  padding: 10px 20px;
+  width: 100%;
+  position: fixed;
+  bottom: -36px;
+  left: 0;
+  -webkit-transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+          transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+#snackbar.open {
+  bottom: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 #themes #theme-cerulean .theme-icon {
   background-color: #ffffff;

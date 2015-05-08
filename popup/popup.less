@@ -125,7 +125,7 @@ h1 {
 				padding: 3px 8px;
 				font-size: .9em;
 				margin-left: 5px;
-				&:link {
+				&:link, &:visited {
 					color: #2B98F0;
 				}
 				&:active {
@@ -398,6 +398,24 @@ section:not(.active) {
 
 #download {
 	margin-bottom: 0;
+}
+
+#snackbar {
+	background: #323232;
+	color: white;
+	border-radius: 2px 2px 0 0;
+	padding: 10px 20px;
+	width: 100%;
+	position: fixed;
+	bottom: -36px;
+	left: 0;
+	.material-transition(@speed: .5s);
+	
+	&.open {
+		bottom:0;
+		.material-shadow(@level: 1);
+	}
+	
 }
 
 .theme-setup(@name, @bg, @text, @primary, @success, @info, @warning, @danger, @font:~'"Helvetica Neue"', @rules:{}) {
