@@ -4,6 +4,8 @@ $(document).ready(function(){
 	
 	prepPage();
 	
+	$(".dialog").hide();
+	
 	$("a").click(function(){
 		var href = $(this).attr('href');
 		
@@ -58,9 +60,11 @@ $(document).ready(function(){
 		$("#menu-shade").fadeOut();
 	});
 	
-	$("menu ul li:not([data-target=fave-themes])").click(function(){
+	$("menu ul li:not([data-target=faves])").click(function(){
 		$("section.active").removeClass('active');
 		$("#themes .theme-block").show();
+		
+		$("#no-faves").hide();
 		
 		$("menu ul li.active").removeClass('active');
 		$(this).addClass('active');
@@ -73,7 +77,7 @@ $(document).ready(function(){
 		$("menu").toggleClass("open");
 		$("#menu-shade").fadeOut();
 		
-		if (targetName == "about" || targetName == "help") {
+		if (targetName !== "themes") {
 			$("#theme-actions").hide();
 		}
 		else {
@@ -82,7 +86,7 @@ $(document).ready(function(){
 		
 	});
 	
-	$("menu ul li[data-target=fave-themes").click(function(){
+	$("menu ul li[data-target=faves").click(function(){
 		var startSection = $("section.active");
 		
 		if (startSection.attr('id') !== "section-themes") {
@@ -99,6 +103,11 @@ $(document).ready(function(){
 		
 		$("menu").toggleClass("open");
 		$("#menu-shade").fadeOut();
+		
+		if ($(".theme-block.theme-faved").length == 0) {
+			$("#no-faves").show();
+		}
+		
 	});
 	
 	$("#load-anyway-cancel").click(function(){
@@ -113,6 +122,20 @@ $(document).ready(function(){
 		
 		toggleFave(t);
 		$("#favorite i").toggleClass("md-favorite").toggleClass("md-favorite-outline");
+	});
+	
+	$("#fave-clear").click(function(){
+		$("#fave-clear-verify").show();
+	});
+	
+	$("#fave-clear-no").click(function(){
+		$("#fave-clear-verify").hide();
+	});
+	
+	$("#fave-clear-yes").click(function(){
+		clearFaves();
+		$("#fave-clear-verify").hide();
+		$(".theme-block.theme-faved").removeClass("theme-faved");
 	});
 	
 });

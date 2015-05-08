@@ -13,6 +13,33 @@
 	
 </head>
 <body>
+			
+	<div id="no-bootstrap" class="dialog">
+		<div class="dialog-inner">
+			<p>
+				It looks like this page doesn't have Bootstrap installed. Would you like to load the themes anyway?
+			</p>
+			
+			<div class="dialog-buttons">
+				<a id="load-anyway-cancel" class="dialog-button" href="#">Cancel</a>
+				<a id="load-anyway" class="dialog-button" href="#">Load Anyway</a>
+			</div>
+		</div>
+	</div>
+	
+	<div id="fave-clear-verify" class="dialog">
+		<div class="dialog-inner">
+			<p>
+				Are you sure you want to clear out your favorites list? This cannot be undone!
+			</p>
+			
+			<div class="dialog-buttons">
+				<a id="fave-clear-no" class="dialog-button" href="#">Cancel</a>
+				<a id="fave-clear-yes" class="dialog-button" href="#">Clear</a>
+			</div>
+		</div>
+	</div>
+	
 	<header>
 		<div id="hamburger"><i class="md md-menu"></i></div>
 		<h1>Bootswatch Previewer</h1>
@@ -30,31 +57,18 @@
 		
 		<ul>
 			<li data-target="themes" class="active"><i class="md md-brush"></i> All Themes</li>
-			<li data-target="fave-themes"><i class="md md-favorite"></i> Favorites</li>
+			<li data-target="faves"><i class="md md-favorite"></i> Favorites</li>
 			<li class="menu-divider"></li>
 			<li data-target="about"><i class="md md-info-outline"></i> About</li>
-			<li data-target="help"><i class="md md-help"></i> Help</li>
+			<li data-target="settings"><i class="md md-settings"></i> Settings</li>
 		</ul>
 	</menu>
-			
-			<div id="no-bootstrap" class="dialog">
-				<div class="dialog-inner">
-					<p>
-						It looks like this page doesn't have Bootstrap installed. Would you like to load the themes anyway?
-					</p>
-					
-					<div class="dialog-buttons">
-						<a id="load-anyway-cancel" class="dialog-button" href="#">Cancel</a>
-						<a id="load-anyway" class="dialog-button" href="#">Load Anyway</a>
-					</div>
-				</div>
-			</div>
 	
 	<div id="main">
 	
 		<section id="section-themes" class="active">
 			<div id="themes"></div>
-			
+			<div id="no-faves">It looks like you don't have any themes favorited right now. Hit the favorite button when previewing a theme to add it to your favorites list.</div>
 		</section>
 		
 		<div id="theme-actions">
@@ -90,8 +104,15 @@
 			<a href="http://kobitate.com" class="button button-green">Created by Kobi Tate</a>
 		</section>
 		
-		<section id="section-help">
-			Help
+		<section id="section-settings">
+			<div class="card">
+				
+				<h2>Favorites Settings</h2>
+				<br />
+				
+				<a class="button button-red ripple-effect" href="#" id="fave-clear">Clear Favorites</a>
+				
+			</div>
 		</section>
 		
 	</div>

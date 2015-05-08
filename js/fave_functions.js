@@ -42,9 +42,17 @@ function toggleFave(t) {
 	checkFaved(t, function(isFaved) {
 		if (isFaved) {
 			removeFave(t);
+			$("#theme-" + t).hide();
+			if ($(".theme-block.theme-faved").length == 0) {
+				$("#no-faves").show();
+			}
 		}
 		else {
 			addFave(t);
 		}
 	});
+}
+
+function clearFaves(){
+	setFaves("");
 }
