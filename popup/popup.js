@@ -37,16 +37,18 @@ $(document).ready(function(){
 		}
 		
 		if (message.method === "themeAlreadySet") {
-			$("#theme-" + message.title + " .theme-icon").addClass('active');
 			$("#no-bootstrap").hide();
-			$("#theme-specific-actions .button").removeClass('disabled');
-			//$("#theme-specific-actions").show();
-			
-			checkFaved(message.title, function(isFaved){
-				if (isFaved) {
-					$("#favorite i").addClass("md-favorite").removeClass("md-favorite-outline");
-				}
-			});
+			if (message.title !== "") {
+				$("#theme-" + message.title + " .theme-icon").addClass('active');
+				$("#theme-specific-actions .button").removeClass('disabled');
+				//$("#theme-specific-actions").show();
+				
+				checkFaved(message.title, function(isFaved){
+					if (isFaved) {
+						$("#favorite i").addClass("md-favorite").removeClass("md-favorite-outline");
+					}
+				});
+			}
 			
 		}
 	});
