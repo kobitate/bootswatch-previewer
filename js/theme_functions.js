@@ -36,6 +36,7 @@ function clearTheme() {
 	chrome.tabs.executeScript(null, {file: "target_page/reset.js"});
 	//$("#theme-specific-actions").hide();
 	$('.theme-icon.active').toggleClass('active');
+	$("#theme-specific-actions .button").addClass('disabled');
 	
 	chrome.tabs.executeScript(null, {
 		code: 'document.getElementById("last-theme").value = \'\';'
@@ -72,8 +73,8 @@ function loadThemes() {
 		$('.theme-icon.active').toggleClass('active');
 		$(this).find('.theme-icon').toggleClass('active');
 		//$("#theme-specific-actions").show();
+		$("#theme-specific-actions .button").removeClass('disabled');
 	}).each(function(){
-		
 		var t = $(this).data('theme');
 		checkFaved(t, function(isFaved){
 			//console.log("hi");

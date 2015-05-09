@@ -39,6 +39,7 @@ $(document).ready(function(){
 		if (message.method === "themeAlreadySet") {
 			$("#theme-" + message.title + " .theme-icon").addClass('active');
 			$("#no-bootstrap").hide();
+			$("#theme-specific-actions .button").removeClass('disabled');
 			//$("#theme-specific-actions").show();
 			
 			checkFaved(message.title, function(isFaved){
@@ -69,7 +70,7 @@ $(document).ready(function(){
 		$("#menu-shade").fadeOut();
 	});
 	
-	$("menu ul li:not([data-target=faves])").click(function(){
+	$("menu ul li:not([data-target=faves]):not(.menu-divider)").click(function(){
 		$("section.active").removeClass('active');
 		$("#themes .theme-block").show();
 		
