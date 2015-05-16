@@ -56,12 +56,16 @@ html {
 	height: 500px;
 }
 
+.roboto {
+	font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 body {
 	min-width: 300px;
-	font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
 	padding: 0;
 	margin: 0;
 	background: @gray;
+	.roboto;
 }
 
 .hidden {
@@ -88,6 +92,31 @@ h1 {
 	h2 {
 		margin: 0;
 		padding: 0;
+	}
+	
+	.select-outer {
+		
+		&:after {
+			content: '\25bc';
+			float: right;
+			margin-top: -25px;
+			margin-right: 5px;
+			opacity: 0.56;
+		}
+		
+		select {
+			width: 100%;
+			display: inline-block;
+			-webkit-appearance: none;
+			padding: 10px;
+			border-radius: 0;
+			background: transparent;
+			border: none;
+			border-bottom: solid #AAA 1px;
+			cursor: pointer;
+			font-size: 1em;
+			.roboto;
+		}
 	}
 }
 
@@ -300,7 +329,7 @@ section:not(.active) {
 			clear: both;
 			height: 60px;
 			line-height: 15px;
-			.material-transition();
+			.material-transition(.3s);
 			.material-shadow(1);
 			display: block;
 			
