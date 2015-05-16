@@ -2,3 +2,7 @@
 *.codekit
 
 README.html
+
+*.kit
+
+*.less
