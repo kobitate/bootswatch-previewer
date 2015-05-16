@@ -8,7 +8,7 @@ function snackbar(text){
 		clearTimeout(closeSnackbar);
 		closeSnackbar = setTimeout(function(){
 			$("#snackbar").removeClass('open');
-		}, 3000);
+		}, 3000); 
 	}
 	else {
 		setTimeout(function(){
