@@ -1,13 +1,23 @@
 /*global chrome */
 
+function saveSetting(name, value) {
+	chrome.storage.sync.set({name: value});
+}
+
+function getSetting(name, callback) {
+	chrome.storage.sync.get(name, function(data) {
+		callback(data);
+	});
+}
+
 function getFaves(callback){
-	chrome.storage.sync.get("favorites", function(data) {
+	getSetting("favorites", function(data) {
 		callback(data.favorites);
 	});
 }
 
 function setFaves(faves){
-	chrome.storage.sync.set({"favorites": faves});
+	saveSetting("favorites", faves);
 }
 
 function checkFaved(t, callback) {
