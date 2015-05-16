@@ -7,16 +7,15 @@ function prepPage() {
 	chrome.tabs.executeScript(null, {file: "target_page/inject.js"});
 }
 
-
-
 function setTheme(t) {
-		
+			
 	var themeFile = chrome.extension.getURL('themes/'+t+'.css');
 	chrome.tabs.executeScript(null, {
 		code: 'document.getElementById("bootswatch-style").setAttribute("href", "'+ themeFile +'");'+"\n"+
 			'var originalSheet=document.getElementById("original-stylesheet");'+"\n"+
 			'if (originalSheet!=null) { originalSheet.disabled = true; }'+"\n"+
-			'document.getElementById("last-theme").value = \''+ t +'\';'
+			'document.getElementById("last-theme").value = \''+ t +'\';\n'+
+			'window.location.hash="swatch-preview-'+t+'";'
 	});
 	
 	$("#download").attr('href', "http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/"+ t +"/bootstrap.min.css");
@@ -24,7 +23,7 @@ function setTheme(t) {
 	checkFaved(t, function(isFaved){
 		if (isFaved) {
 			$("#favorite i").addClass("md-favorite").removeClass("md-favorite-outline");
-		}
+		} 
 		else {
 			$("#favorite i").removeClass("md-favorite").addClass("md-favorite-outline");
 		}
