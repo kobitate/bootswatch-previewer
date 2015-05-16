@@ -1,5 +1,3 @@
-/*global chrome */
-
 function saveSetting(name, value) {
 	chrome.storage.sync.set({name: value});
 }
@@ -7,11 +5,14 @@ function saveSetting(name, value) {
 function getSetting(name, callback) {
 	chrome.storage.sync.get(name, function(data) {
 		callback(data);
-	});
+	}); 
 }
 
 function getFaves(callback){
 	getSetting("favorites", function(data) {
+		if (data.favorites === undefined) {
+			saveSetting("favorites", "");
+		}
 		callback(data.favorites);
 	});
 }
