@@ -1,12 +1,23 @@
 // @codekit-prepend "../js/fave_functions.js","../js/theme_functions.js"
 
+var closeSnackbar = null;
+
 function snackbar(text){
-	setTimeout(function(){
-		$("#snackbar").text(text).addClass('open');
-	}, 500);
-	setTimeout(function(){
-		$("#snackbar").removeClass('open');
-	}, 3000);
+	if ($("#snackbar").hasClass("open")) {
+		$("#snackbar").text(text);
+		clearTimeout(closeSnackbar);
+		closeSnackbar = setTimeout(function(){
+			$("#snackbar").removeClass('open');
+		}, 3000);
+	}
+	else {
+		setTimeout(function(){
+			$("#snackbar").text(text).addClass('open');
+		}, 500);
+		closeSnackbar = setTimeout(function(){
+			$("#snackbar").removeClass('open');
+		}, 3000);
+	}
 }
 
 $(document).ready(function(){
@@ -56,6 +67,11 @@ $(document).ready(function(){
 	$("#load-anyway").click(function(){
 		$("#reset,#theme-actions").show();
 		$("#no-bootstrap").hide();
+	});
+	
+	$("#load-anyway-cancel").click(function(){
+		clearTheme();
+		window.close();
 	});
 	
 	$("#reset").click(function(){
@@ -122,9 +138,6 @@ $(document).ready(function(){
 		
 	});
 	
-	$("#load-anyway-cancel").click(function(){
-		window.close();
-	});
 	
 	$("#favorite").click(function(){
 		var item = $(".theme-block .theme-icon.active").parent();
@@ -149,6 +162,11 @@ $(document).ready(function(){
 		$("#fave-clear-verify").hide();
 		$(".theme-block.theme-faved").removeClass("theme-faved");
 		snackbar("Favorites Cleared!");
+	});
+	
+	$("#startup-select").change(function(){
+		var mode = $(this).val().toLowerCase().replace(" ", "_");
+		saveSetting("startup_mode",mode);
 	});
 	
 });
