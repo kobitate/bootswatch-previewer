@@ -114,7 +114,7 @@ $(document).ready(function(){
 		
 	});
 	
-	$("menu ul li[data-target=faves").click(function(){
+	$("menu ul li[data-target=faves]").click(function(){
 		var startSection = $("section.active");
 		
 		if (startSection.attr('id') !== "section-themes") {
@@ -147,6 +147,11 @@ $(document).ready(function(){
 		
 		toggleFave(t);
 		$("#favorite i").toggleClass("md-favorite").toggleClass("md-favorite-outline");
+		
+		if ($("menu ul li[data-target=faves]").hasClass('active')) {
+			$("#theme-specific-actions .button").addClass('disabled');
+		}
+		
 	});
 	
 	$("#fave-clear").click(function(){
