@@ -166,7 +166,7 @@ $(document).ready(function(){
 	
 	$("#startup-select").change(function(){
 		var mode = $(this).val().toLowerCase().replace(" ", "_");
-		saveSetting("startup_mode",mode);
+		chrome.storage.sync.set({startupMode: mode});
 	});
 	
 });
