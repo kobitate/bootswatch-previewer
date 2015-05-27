@@ -13,7 +13,7 @@ function setTheme(t) {
 			'var originalSheet=document.getElementById("original-stylesheet");'+"\n"+
 			'if (originalSheet!=null) { originalSheet.disabled = true; }'+"\n"+
 			'document.getElementById("last-theme").value = \''+ t +'\';\n'+
-			'window.location.hash="swatch-preview-'+t+'";'
+			'cacheControl();'
 	});
 	
 	$("#download").attr('href', "http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/"+ t +"/bootstrap.min.css");

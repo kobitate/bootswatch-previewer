@@ -34,3 +34,41 @@ else {
 		chrome.runtime.sendMessage({method:'themeAlreadySet',title:lastTheme});
 	}
 }
+
+function updateURL(string) {
+	window.history.pushState("bspr","Bootswatch Previewer State", string);
+}
+
+function paramUpdate(key, value) {
+    key = escape(key); value = escape(value);
+
+    var kvp = document.location.search.substr(1).split('&');
+    if (kvp === '') {
+        updateURL('?' + key + '=' + value);
+    }
+    else {
+
+        var i = kvp.length; var x; while (i--) {
+            x = kvp[i].split('=');
+
+            if (x[0] === key) {
+                x[1] = value;
+                kvp[i] = x.join('=');
+                break;
+            }
+        }
+
+        if (i < 0) { kvp[kvp.length] = [key, value].join('='); }
+		var params = kvp.join('&');
+		
+		if (params.charAt(0) == '&') {
+			params = params.substr(1);
+		}
+		
+        updateURL("?" + params);
+    }
+}
+
+function cacheControl() {
+	paramUpdate("bspr",Math.floor(Date.now()));
+}
