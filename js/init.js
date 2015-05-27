@@ -1,6 +1,8 @@
+/*global chrome*/
 chrome.runtime.onInstalled.addListener(function(details){
-	if (details.reason == "install") {
-		alert("Thank you for installing Bootswatch Previewer!");
-		chrome.storage.sync.set({"favorites": ""});
+	if (details.reason === "install") {
+		chrome.tabs.create({url: "http://kobitate.com/bootswatch-previewer"});
+		chrome.storage.sync.set({favorites: ""});
+		chrome.storage.sync.set({startupMode: "all_themes"});
     }
 });
