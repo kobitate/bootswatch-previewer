@@ -1,4 +1,6 @@
-// @codekit-prepend "../js/fave_functions.js","../js/theme_functions.js"
+// @codekit-prepend "../js/analytics.js","../js/fave_functions.js","../js/theme_functions.js"
+
+ga('send', 'pageview', '/popup.html');
 
 var closeSnackbar = null;
 
@@ -28,11 +30,14 @@ $(document).ready(function(){
 	
 	$("a").click(function(){
 		var href = $(this).attr('href');
+		var gaLabel = $(this).data('galabel') ? $(this).data('galabel') : $(this).text();
 		
 		if (href !== "#") {
+			linkEvent(gaLabel);
 			chrome.tabs.create({url: $(this).attr('href')});
 			return false;
 		}
+		
 	});
 	
 	chrome.runtime.onMessage.addListener(function(message){
@@ -43,6 +48,7 @@ $(document).ready(function(){
 			
 			if (!hasBootstrap) {
 				$("#no-bootstrap").show();
+				dialogEvent("no-bootstrap");
 			}
 			
 		}
@@ -67,15 +73,18 @@ $(document).ready(function(){
 	$("#load-anyway").click(function(){
 		$("#reset,#theme-actions").show();
 		$("#no-bootstrap").hide();
+		dialogButton("no-bootstrap: continue");
 	});
 	
 	$("#load-anyway-cancel").click(function(){
 		clearTheme();
+		dialogButton("no-bootstrap: cancel");
 		window.close();
 	});
 	
 	$("#reset").click(function(){
 		clearTheme();
+		themeEvent("reset","");
 	});
 	
 	$("#hamburger").click(function(){
@@ -112,6 +121,8 @@ $(document).ready(function(){
 			$("#theme-actions").show();
 		}
 		
+		tabEvent(targetName);
+		
 	});
 	
 	$("menu ul li[data-target=faves]").click(function(){
@@ -136,6 +147,8 @@ $(document).ready(function(){
 			$("#no-faves").show();
 		}
 		
+		tabEvent("faves");
+		
 	});
 	
 	
@@ -156,10 +169,12 @@ $(document).ready(function(){
 	
 	$("#fave-clear").click(function(){
 		$("#fave-clear-verify").show();
+		dialogEvent("clear-faves");
 	});
 	
 	$("#fave-clear-no").click(function(){
 		$("#fave-clear-verify").hide();
+		dialogButton("clear-faves: no");
 	});
 	
 	$("#fave-clear-yes").click(function(){
@@ -167,11 +182,12 @@ $(document).ready(function(){
 		$("#fave-clear-verify").hide();
 		$(".theme-block.theme-faved").removeClass("theme-faved");
 		snackbar("Favorites Cleared!");
+		dialogButton("clear-faves: yes");
 	});
-	
+	/*
 	$("#startup-select").change(function(){
 		var mode = $(this).val().toLowerCase().replace(" ", "_");
 		chrome.storage.sync.set({startupMode: mode});
-	});
+	});*/
 	
 });

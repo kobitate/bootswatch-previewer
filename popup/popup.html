@@ -1,6 +1,9 @@
 <!doctype html>
 <html>
 <head>
+	
+	<script src="../js/analytics.js"></script>
+	
 	<script src="../lib/jquery-2.1.4.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../lib/material-design-iconic-font.min.css" />
@@ -48,7 +51,7 @@
 <menu>
 	
 	<div id="menu-header">
-		<img src="../icon48.png" />
+		<img src="../icons/icon48.png" />
 		<div id="menu-title">Bootswatch Previewer</div>
 		by Kobi Tate
 	</div>
@@ -72,7 +75,7 @@
 <div id="theme-actions">
 	<a id="reset" href="#" class="button button-red ripple-effect" data-ripple-color="rgba(0,0,0,0.2)" data-ripple-wrap-class="button-ripple">Reset Page</a>
 	<div class="button-group" id="theme-specific-actions">
-		<a id="download" href="#" class="button button-green ripple-effect disabled" data-ripple-color="rgba(0,0,0,0.2)" data-ripple-wrap-class="button-ripple"><i class="md md-file-download"></i> Download</a>
+		<a id="download" href="#" class="button button-green ripple-effect disabled" data-ripple-color="rgba(0,0,0,0.2)" data-ripple-wrap-class="button-ripple" data-galabel=""><i class="md md-file-download"></i> Download</a>
 		<a id="favorite" href="#" class="button button-green ripple-effect disabled" data-ripple-color="rgba(0,0,0,0.2)" data-ripple-wrap-class="button-ripple"><i class="md md-favorite-outline"></i> Favorite</a>
 	</div>
 </div><section id="section-about">
@@ -99,7 +102,7 @@
 	
 	<a href="http://kobitate.com" class="button button-green">Created by Kobi Tate</a>
 </section><section id="section-settings">
-	<div class="card">
+	<div class="card" id="card-faves-settings">
 		
 		<h2>Favorites Settings</h2>
 		Change settings pertaining to your favorites list.
@@ -107,7 +110,7 @@
 			<a class="button button-red ripple-effect" href="#" id="fave-clear">Clear Favorites</a>
 		</p>
 	</div>
-	<div class="card">
+	<!--div class="card" id="card-launch-settings">
 		
 		<h2>Popup Launch Settings</h2>
 		
@@ -119,7 +122,7 @@
 			</select>
 		</p>
 		
-	</div>
+	</div-->
 </section>		
 		
 	</div>

@@ -16,7 +16,7 @@ function setTheme(t) {
 			'cacheControl();'
 	});
 	
-	$("#download").attr('href', "http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/"+ t +"/bootstrap.min.css");
+	$("#download").attr('href', "http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/"+ t +"/bootstrap.min.css").data('galabel', 'Download: ' + t );
 	
 	checkFaved(t, function(isFaved){
 		if (isFaved) {
@@ -66,11 +66,13 @@ function loadThemes() {
 	}
 	
 	$(".theme-block").click(function(){
-		setTheme($(this).data('theme'));
+		var t = $(this).data('theme');
+		setTheme(t);
 		$('.theme-icon.active').toggleClass('active');
 		$(this).find('.theme-icon').toggleClass('active');
 		//$("#theme-specific-actions").show();
 		$("#theme-specific-actions .button").removeClass('disabled');
+		themeEvent("apply", t);
 	}).each(function(){
 		var t = $(this).data('theme');
 		checkFaved(t, function(isFaved){

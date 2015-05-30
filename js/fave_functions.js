@@ -37,6 +37,7 @@ function addFave(t) {
 		var s = data+" "+t;
 		s = s.trim();
 		setFaves(s);
+		themeEvent("add-fave", t);
 	});
 }
 
@@ -45,6 +46,7 @@ function removeFave(t) {
 		data = data.replace(t + " ", "");
 		data = data.replace(t, "");
 		setFaves(data.trim());
+		themeEvent("remove-fave", t);
 	});
 }
 
