@@ -2,9 +2,3 @@
 *.codekit
 
 README.html
-
-*.kit
-
-*.less
-
-popup/sections/
