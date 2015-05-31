@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Bootswatch Previewer",
 	"description": "Preview any Bootswatch theme on your Bootstrap website right from the browser!",
-	"version": "0.0",
+	"version": "1.0",
 	"browser_action": {
 		"default_popup": "popup/popup.html",
 		"default_icon": "icons/icon.png",
