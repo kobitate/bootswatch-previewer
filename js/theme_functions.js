@@ -83,4 +83,32 @@ function loadThemes() {
 			}
 		});
 	});
+	
+	getStartpage(function(startupMode){
+		if (startupMode == "favorites") {
+			var startSection = $("section.active");
+		
+			if (startSection.attr('id') !== "section-themes") {
+				$("section.active").removeClass('active');
+			}
+			
+			$("#section-themes").addClass('active');
+			$("#theme-actions").show();
+			
+			$("#themes .theme-block:not(.theme-faved)").hide();
+			
+			$("menu ul li[data-target=themes]").removeClass('active');
+			$("menu ul li[data-target=faves]").addClass('active');
+			
+			if ($(".theme-block.theme-faved").length === 0) {
+				$("#no-faves").show();
+			}
+			
+			$("#startup-select :nth-child(2)").prop('selected', true);
+		}
+	});
+	
+	checkAnalyticsOptout(function(optout){
+		$("#card-analytics input[type=checkbox]").prop("checked", optout);
+	});
 }

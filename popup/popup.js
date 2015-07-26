@@ -1,6 +1,14 @@
-// @codekit-prepend "../js/analytics.js","../js/fave_functions.js","../js/theme_functions.js"
+// @codekit-prepend "../js/analytics.js","../js/settings_functions.js","../js/theme_functions.js"
 
-ga('send', 'pageview', '/popup.html');
+var sendAnalytics = true;
+
+checkAnalyticsOptout(function(optout){
+	sendAnalytics = !optout;
+});
+
+if (sendAnalytics) {
+	ga('send', 'pageview', '/popup.html');
+}
 
 var closeSnackbar = null;
 
@@ -184,10 +192,18 @@ $(document).ready(function(){
 		snackbar("Favorites Cleared!");
 		dialogButton("clear-faves: yes");
 	});
-	/*
+	
 	$("#startup-select").change(function(){
-		var mode = $(this).val().toLowerCase().replace(" ", "_");
-		chrome.storage.sync.set({startupMode: mode});
-	});*/
+		var mode = $(this).val().toLowerCase().replace(" ", "-");
+		chrome.storage.sync.set({startupmode: mode});
+		settingEvent("startup", mode);
+	});
+	
+	$("#card-analytics input[type=checkbox]").change(function(event) {
+		var checked = $(this).prop('checked');
+		chrome.storage.sync.set({analyticsoptout: checked});
+		settingEvent("analytics opt out", (checked?"enable":"disable"));
+		sendAnalytics = !checked;
+	});
 	
 });

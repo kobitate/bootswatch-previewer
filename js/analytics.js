@@ -10,32 +10,38 @@ ga('set', 'checkProtocolTask', function(){}); // Removes failing protocol check.
 ga('require', 'displayfeatures');
 
 function event(category, action, label) {
-	ga('send', {
-		'hitType': 'event',          // Required.
-		'eventCategory': category,   // Required.
-		'eventAction': action,      // Required.
-		'eventLabel': label
-	});
+	if (sendAnalytics){
+		ga('send', {
+			'hitType': 'event',          // Required.
+			'eventCategory': category,   // Required.
+			'eventAction': action,      // Required.
+			'eventLabel': label
+		});
+	}
 }
 
 function valueEvent(category, label, action, value) {
-	ga('send', {
-		'hitType': 'event',          // Required.
-		'eventCategory': category,   // Required.
-		'eventAction': action,      // Required.
-		'eventLabel': label,
-		'eventValue': value
-	});
+	if (sendAnalytics){
+		ga('send', {
+			'hitType': 'event',          // Required.
+			'eventCategory': category,   // Required.
+			'eventAction': action,      // Required.
+			'eventLabel': label,
+			'eventValue': value
+		});
+	}
 }
 
 function noninteractionEvent(category, label) {
-	ga('send', {
-		'hitType': 'event',          // Required.
-		'eventCategory': category,   // Required.
-		'eventAction': action,      // Required.
-		'eventLabel': label,
-		'nonInteraction': 1
-	});
+	if (sendAnalytics){
+		ga('send', {
+			'hitType': 'event',          // Required.
+			'eventCategory': category,   // Required.
+			'eventAction': action,      // Required.
+			'eventLabel': label,
+			'nonInteraction': 1
+		});
+	}
 }
 
 function buttonEvent(label) {
@@ -60,4 +66,8 @@ function tabEvent(label) {
 
 function themeEvent(category, label) {
 	event('theme', category, label);
+}
+
+function settingEvent(category, label) {
+	event('setting', category, label);
 }

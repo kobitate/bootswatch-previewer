@@ -6,6 +6,24 @@ function getSetting(name, callback) {
 	}); 
 }
 
+function getStartpage(callback) {
+	getSetting("startupmode", function(data) {
+		if (data.startupmode === undefined) {
+			chrome.storage.sync.set({startupmode: "all-themes"});
+		}
+		callback(data.startupmode);
+	});
+}
+
+function checkAnalyticsOptout(callback){
+	getSetting("analyticsoptout", function(data){
+		if (data.analyticsoptout === undefined) {
+			chrome.storage.sync.set({analyticsoptout: false});
+		}
+		callback(data.analyticsoptout);
+	});
+}
+
 function setFaves(faves){
 	chrome.storage.sync.set({favorites: faves});
 }
