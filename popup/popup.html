@@ -1,150 +1,161 @@
 <!doctype html>
 <html>
-
 <head>
 
-    <script src="../js/analytics.js"></script>
+	<script src="../js/analytics.js"></script>
 
-    <script src="../lib/jquery-2.1.4.min.js"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../lib/material-design-iconic-font.min.css" />
+	<script src="../lib/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../lib/material-design-iconic-font.min.css" />
 
-    <script src="../lib/ripple/simple-ripple-effect.js"></script>
-    <link rel="stylesheet" type="text/css" href="../lib/ripple/simple-ripple-effect.css" />
+	<script src="../lib/ripple/simple-ripple-effect.js"></script>
+	<link rel="stylesheet" type="text/css" href="../lib/ripple/simple-ripple-effect.css" />
 
-    <script src="popup.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="popup.css" />
+	<script src="popup.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="popup.css" />
 
 </head>
-
 <body tabindex="1">
 
-    <div id="no-bootstrap" class="dialog">
-        <div class="dialog-inner">
-            <p>
-                It looks like this page doesn't have Bootstrap installed. Would you like to load the themes anyway?
-            </p>
+	<div id="no-bootstrap" class="dialog">
+	<div class="dialog-inner">
+		<p>
+			It looks like this page doesn't have Bootstrap installed. Would you like to load the themes anyway?
+		</p>
 
-            <div class="dialog-buttons">
-                <a id="load-anyway-cancel" class="dialog-button" href="#">Cancel</a>
-                <a id="load-anyway" class="dialog-button" href="#">Load Anyway</a>
-            </div>
-        </div>
-    </div>
+		<div class="dialog-buttons">
+			<a id="load-anyway-cancel" class="dialog-button" href="#">Cancel</a>
+			<a id="load-anyway" class="dialog-button" href="#">Load Anyway</a>
+		</div>
+	</div>
+</div>
 
-    <div id="fave-clear-verify" class="dialog">
-        <div class="dialog-inner">
-            <p>
-                Are you sure you want to clear out your favorites list? This cannot be undone!
-            </p>
+<div id="fave-clear-verify" class="dialog">
+	<div class="dialog-inner">
+		<p>
+			Are you sure you want to clear out your favorites list? This cannot be undone!
+		</p>
 
-            <div class="dialog-buttons">
-                <a id="fave-clear-no" class="dialog-button" href="#">Cancel</a>
-                <a id="fave-clear-yes" class="dialog-button" href="#">Clear</a>
-            </div>
-        </div>
-    </div>
-    <header>
-        <div id="hamburger"><i class="md md-menu"></i></div>
-        <h1>Bootswatch Previewer</h1>
-    </header>
+		<div class="dialog-buttons">
+			<a id="fave-clear-no" class="dialog-button" href="#">Cancel</a>
+			<a id="fave-clear-yes" class="dialog-button" href="#">Clear</a>
+		</div>
+	</div>
+</div>
 
-    <div id="menu-shade"></div>
+<div id="page-not-allowed" class="dialog">
+	<div class="dialog-inner">
+		<p>
+			Unfortunately, Bootswatch Previewer cannot run on this page. Please visit another page and try again.
+		</p>
 
-    <menu>
+		<div class="dialog-buttons">
+			<a id="not-allowed-close" class="dialog-button" href="#">Close</a>
+		</div>
+	</div>
+</div>
+<header>
+	<div id="hamburger"><i class="md md-menu"></i></div>
+	<h1>Bootswatch Previewer</h1>
+</header>
 
-        <div id="menu-header">
-            <img src="../icons/icon48.png" />
-            <div id="menu-title">Bootswatch Previewer</div>
-            by Kobi Tate
-        </div>
+<div id="menu-shade"></div>
 
-        <ul>
-            <li data-target="themes" class="active"><i class="md md-brush"></i> All Themes</li>
-            <li data-target="faves"><i class="md md-favorite"></i> Favorites</li>
-            <li class="menu-divider"></li>
-            <li data-target="about"><i class="md md-info-outline"></i> About</li>
-            <li data-target="settings"><i class="md md-settings"></i> Settings</li>
-        </ul>
-    </menu>
+<menu>
+	
+	<div id="menu-header">
+		<img src="../icons/icon48.png" />
+		<div id="menu-title">Bootswatch Previewer</div>
+		by Kobi Tate
+	</div>
+	
+	<ul>
+		<li data-target="themes" class="active"><i class="md md-brush"></i> All Themes</li>
+		<li data-target="faves"><i class="md md-favorite"></i> Favorites</li>
+		<li class="menu-divider"></li>
+		<li data-target="about"><i class="md md-info-outline"></i> About</li>
+		<li data-target="settings"><i class="md md-settings"></i> Settings</li>
+	</ul>
+</menu> 
 
-    <div id="main">
 
-        <section id="section-themes" class="active">
-            <div id="themes"></div>
-            <div id="no-faves">It looks like you don't have any themes favorited right now. Hit the favorite button when previewing a theme to add it to your favorites list.</div>
-        </section>
+	<div id="main">
 
-        <div id="theme-actions">
-            <a id="reset" href="#" class="button button-red ripple-effect" data-ripple-color="rgba(0,0,0,0.2)" data-ripple-wrap-class="button-ripple">Reset Page</a>
-            <div class="button-group" id="theme-specific-actions">
-                <a id="download" href="#" class="button button-green ripple-effect disabled" data-ripple-color="rgba(0,0,0,0.2)" data-ripple-wrap-class="button-ripple" data-galabel=""><i class="md md-file-download"></i> Download</a>
-                <a id="favorite" href="#" class="button button-green ripple-effect disabled" data-ripple-color="rgba(0,0,0,0.2)" data-ripple-wrap-class="button-ripple"><i class="md md-favorite-outline"></i> Favorite</a>
-            </div>
-        </div>
-        <section id="section-about">
-            <div class="card"> 
+		<section id="section-themes" class="active">
+	<div id="themes"></div>
+	<div id="no-faves">It looks like you don't have any themes favorited right now. Hit the favorite button when previewing a theme to add it to your favorites list.</div>
+</section>
 
-                <h2>About this Extension</h2>
-                <p>
-                    Hey there! I built this extension once when I was thinking there was no good way to preview the awesome themes provided by Bootswatch, outside of their bookmarklet. To create something more visual and fun to use, I built Bootswatch Previewer. With a Material
-                    Design inspired layout and experience, this extension gives you an awesome way to try out all the themes available.
-                </p>
-            </div>
+<div id="theme-actions">
+	<a id="reset" href="#" class="button button-red ripple-effect" data-ripple-color="rgba(0,0,0,0.2)" data-ripple-wrap-class="button-ripple">Reset Page</a>
+	<div class="button-group" id="theme-specific-actions">
+		<a id="download" href="#" class="button button-green ripple-effect disabled" data-ripple-color="rgba(0,0,0,0.2)" data-ripple-wrap-class="button-ripple" data-galabel=""><i class="md md-file-download"></i> Download</a>
+		<a id="favorite" href="#" class="button button-green ripple-effect disabled" data-ripple-color="rgba(0,0,0,0.2)" data-ripple-wrap-class="button-ripple"><i class="md md-favorite-outline"></i> Favorite</a>
+	</div>
+</div><section id="section-about">
+	<div class="card">
+		
+		<h2>About this Extension</h2>
+		<p>
+			Hey there! I built this extension once when I was thinking there was no good way to preview the awesome themes provided by Bootswatch, outside of their bookmarklet. To create something more visual and fun to use, I built Bootswatch Previewer. With a Material Design inspired layout and experience, this extension gives you an awesome way to try out all the themes available.
+		</p>
+	</div>
+	
+	<div class="card">
+		
+		<h2>Credits</h2>
+		<p>
+			<ul>
+				<li><a href="http://bootswatch.com">Themes by Bootswatch</a></li>
+				<li><a href="http://jquery.com">Built with jQuery</a></li>
+				<li><a href="http://lesscss.org">CSS Preprocessing by Less</a></li>
+				<li><a href="https://google.github.io/material-design-icons/">Icons by Google</a></li>
+			</ul>
+		</p>
+	</div>
+	
+	<a href="http://kobitate.com" class="button button-green">Created by Kobi Tate</a>
+	
+	<a href="http://github.com/therealgitcub/bootswatch-previewer" class="button button-red">Contribute on GitHub</a>
+	
+</section><section id="section-settings">
+	<div class="card" id="card-faves-settings">
+		
+		<h2>Favorites Settings</h2>
+		Change settings pertaining to your favorites list.
+		<p>
+			<a class="button button-red ripple-effect" href="#" id="fave-clear">Clear Favorites</a>
+		</p>
+	</div>
+	<div class="card" id="card-launch-settings">
+		
+		<h2>Popup Launch Settings</h2>
+		
+		Choose if the popup window will open to All Themes or Favorites.
+		<p class="select-outer">
+			<select id="startup-select">
+				<option>All Themes</option>
+				<option>Favorites</option>
+			</select>
+		</p>
+		
+	</div>
+	
+	<div class="card" id="card-analytics">
+		
+		<h2>Analytics Opt-Out</h2>
+		
+		This extension collects anonymous usage data such as actions within the app, browser version, language, and errors. If you do not wish for this data to be sollected, you can disable it using the checkbox below.
+		
+		<p>
+			<input type="checkbox" /> Opt-out of Google Analytics tracking
+		</p>
+		
+	</div>
+</section>
+	</div>
 
-            <div class="card">
-
-                <h2>Credits</h2>
-                <p>
-                    <ul>
-                        <li><a href="http://bootswatch.com">Themes by Bootswatch</a></li>
-                        <li><a href="http://jquery.com">Built with jQuery</a></li>
-                        <li><a href="http://lesscss.org">CSS Preprocessing by Less</a></li>
-                        <li><a href="https://google.github.io/material-design-icons/">Icons by Google</a></li>
-                    </ul>
-                </p>
-            </div>
-
-            <a href="http://kobitate.com" class="button button-green">Created by Kobi Tate</a>
-
-            <a href="http://github.com/therealgitcub/bootswatch-previewer" class="button button-red">Contribute on GitHub</a>
-
-        </section>
-        <section id="section-settings">
-            <div class="card" id="card-faves-settings">
-
-                <h2>Favorites Settings</h2> Change settings pertaining to your favorites list.
-                <p>
-                    <a class="button button-red ripple-effect" href="#" id="fave-clear">Clear Favorites</a>
-                </p>
-            </div>
-            <div class="card" id="card-launch-settings">
-
-                <h2>Popup Launch Settings</h2> Choose if the popup window will open to All Themes or Favorites.
-                <p class="select-outer">
-                    <select id="startup-select">
-                        <option>All Themes</option>
-                        <option>Favorites</option>
-                    </select>
-                </p>
-
-            </div>
-
-            <div class="card" id="card-analytics">
-
-                <h2>Analytics Opt-Out</h2> This extension collects anonymous usage data such as actions within the app, browser version, language, and errors. If you do not wish for this data to be sollected, you can disable it using the checkbox below.
-
-                <p>
-                    <input type="checkbox" /> Opt-out of Google Analytics tracking
-                </p>
-
-            </div>
-        </section>
-
-    </div>
-
-    <div id="snackbar">Snackbar</div>
+	<div id="snackbar">Snackbar</div>
 
 </body>
-
 </html>
