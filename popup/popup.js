@@ -47,6 +47,13 @@ $(document).ready(function(){
 		}
 
 	});
+	
+	getShowUpdatev2Dialog(function(toShow) {
+		if (toShow) {
+			dialogEvent("update-v2");
+			$("#update-v2").show();
+		} 
+	});
 
 	chrome.runtime.onMessage.addListener(function(message){
 		if (message.method === "bootstrapStatus") {
@@ -92,6 +99,12 @@ $(document).ready(function(){
 
 	$("#not-allowed-close").click(function(event) {
 		window.close();
+	});
+	
+	$("#update-v2-close").click(function() {
+		setShowUpdatev2Dialog(false);
+		dialogButton("update-v2: close");
+		$("#update-v2").hide();
 	});
 
 	$("#reset").click(function(){

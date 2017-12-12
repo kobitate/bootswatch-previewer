@@ -1,10 +1,13 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,400);
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,100);
-@import url(http://fonts.googleapis.com/css?family=Lato:100,400,700);
-@import url(http://fonts.googleapis.com/css?family=News+Cycle:700);
-@import url(http://fonts.googleapis.com/css?family=Raleway:700);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400);
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:400);
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,400");
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700,100");
+@import url("https://fonts.googleapis.com/css?family=Lato:100,400,700");
+@import url("https://fonts.googleapis.com/css?family=News+Cycle:700");
+@import url("https://fonts.googleapis.com/css?family=Raleway:700");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400");
+@import url("https://fonts.googleapis.com/css?family=Nunito+Sans:600");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:400");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500");
+@import url("https://fonts.googleapis.com/css?family=Cabin+Sketch");
 
 @red: rgb(205,53,0);
 @green: #3EB34F;
@@ -305,7 +308,7 @@ section:not(.active) {
 
 #themes {
 	clear: both;
-	height: 370px;
+	height: 600px;
 	
 	.theme-block {
 		width: 22%;
@@ -431,6 +434,17 @@ section:not(.active) {
 	}
 }
 
+#theme-actions {
+	position: fixed;
+	bottom: 0;
+	left: 7px;
+	width: ~"calc(100% - 14px)";
+	z-index: 10;
+	background: #f5f5f5;
+	padding-top: 7px;
+	box-shadow: 0 -2px 5px #f5f5f5;
+}
+
 #download {
 	margin-bottom: 0;
 }
@@ -444,6 +458,7 @@ section:not(.active) {
 	position: fixed;
 	bottom: -36px;
 	left: 0;
+	z-index: 20;
 	.material-transition(@speed: .5s);
 	
 	&.open {
@@ -453,7 +468,7 @@ section:not(.active) {
 	
 }
 
-.theme-setup(@name, @bg, @text, @primary, @success, @info, @warning, @danger, @font:~'"Helvetica Neue"', @rules:{}) {
+.theme-setup(@name, @bg, @text, @primary, @secondary, @success, @info, @warning, @danger, @rules:{}, @font:~'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"') {
 	#themes #theme-@{name} .theme-icon {
 		background-color: @bg;
 		span {
@@ -465,6 +480,10 @@ section:not(.active) {
 		
 		.primary {
 			background-color: @primary;
+		}
+		
+		.secondary {
+			background-color: @secondary;
 		}
 		
 		.success {
@@ -485,22 +504,111 @@ section:not(.active) {
 	}
 }
 
-// SO MANY HEX CODES UGH
-//			 name 		bg		 text 	  primary  success  info	 warning  danger
-.theme-setup(cerulean, 	#FFFFFF, #317EAC, #53B4EB, #88C049, #04519A, #FE6707, #E02B31);
-.theme-setup(cosmo, 	#FFFFFF, #333333, #2780E3, #3FB618, #9954BB, #FF7518, #FF0039, ~'"Source Sans Pro"', {font-weight: 100});
-.theme-setup(cyborg,	#060606, #FFFFFF, #2A9FD6, #77B300, #9933CC, #FF8800, #CC0000, ~'"Roboto"');
-.theme-setup(darkly,	#222222, #FFFFFF, #375A7F, #00BC8C, #3498DB, #F39C12, #E74C3C, ~'"Lato"');
-.theme-setup(flatly,	#FFFFFF, #2C3E50, #2C3E50, #18BC9C, #3498DB, #F39C12, #E74C3C, ~'"Lato"');
-.theme-setup(journal,	#FFFFFF, #000000, #EB6864, #22B24C, #336699, #F5E625, #F57A00, ~'"News Cycle","Arial Narrow Bold"');
-.theme-setup(lumen, 	#FFFFFF, #333333, #158CBA, #28B62C, #75CAEB, #FF851B, #FF4136, ~'"Source Sans Pro"');
-.theme-setup(paper, 	#FFFFFF, #444444, #2196F3, #4CAF50, #9C27B0, #FF9800, #E51C23, ~'"Roboto"');
-.theme-setup(readable, 	#FFFFFF, #333333, #4582EC, #3FAD46, #5BC0DE, #F0AD4E, #D9534F, ~'"Raleway"', {font-weight: 700});
-.theme-setup(sandstone, #FFFFFF, #3E3F3A, #325D88, #93C54B, #29ABE0, #F47C3C, #D9534F, ~'"Roboto"');
-.theme-setup(simplex,	#FCFCFC, #444444, #E22510, #479508, #029BD0, #9C48A0, #D9831F, ~'"Open Sans"');
-.theme-setup(slate, 	#272B30, #C8C8C8, #888F94, #72CA72, #68C5E1, #FA9D1A, #F06E6B);
-.theme-setup(spacelab, 	#FFFFFF, #2D2D2D, #5B84B0, #58D33C, #60B0F6, #EF8E15, #F21614, ~'"Open Sans"');
-.theme-setup(superhero, #2B3E50, #EBEBEB, #DF691A, #5CB85C, #5BC0DE, #F0AD4E, #D9534F, ~'"Lato"');
-.theme-setup(united, 	#FFFFFF, #333333, #DD4814, #38B44A, #772953, #EFB73E, #DF382C, ~'"Ubuntu"');
-.theme-setup(yeti, 		#FFFFFF, #222222, #008CBA, #43AC6A, #5BC0DE, #E99002, #F04124, ~'"Open Sans"');
-	   
+.theme-setup-gradient(@name, @bg, @text, @primary, @secondary, @success, @info, @warning, @danger, @rules:{}, @font:~'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"') {
+	#themes #theme-@{name} .theme-icon {
+		background-color: @bg;
+		span {
+			color: @text !important;
+			font-family: @font,Helvetica,Arial,sans-serif;
+		}
+		
+		@rules();
+		
+		.primary {
+			background-image: @primary;
+		}
+		
+		.secondary {
+			background-image: @secondary;
+		}
+		
+		.success {
+			background-image: @success;
+		}
+		
+		.info {
+			background-image: @info;
+		}
+		
+		.warning {
+			background-image: @warning;
+		}
+		
+		.danger {
+			background-image: @danger;
+		}
+	}
+}
+
+
+// SO MANY HEX CODES AAAAAGGGGHHH
+//			 name 		bg		 text 	  primary  second	success  info	  warning  danger
+.theme-setup(cosmo, 	#FFFFFF, #373a3c, #2780E3, #373a3c, #3FB618, #9954BB, #FF7518, #FF0039, {font-weight: 400}, ~'"Segoe UI","Source Sans Pro"');
+.theme-setup(cyborg,	#060606, #888,    #2A9FD6, #555,    #77B300, #9933CC, #FF8800, #CC0000, {}, ~'"Roboto"');
+.theme-setup(darkly,	#222222, #FFFFFF, #375A7F, #444,    #00BC8C, #3498DB, #F39C12, #E74C3C, {}, ~'"Lato"');
+.theme-setup(flatly,	#FFFFFF, #212529, #2C3E50, #95a5a6, #18BC9C, #3498DB, #F39C12, #E74C3C, {}, ~'"Lato"');
+.theme-setup(journal,	#FFFFFF, #222222, #EB6864, #aaa,    #22B24C, #336699, #F5E625, #F57A00, {}, ~'"News Cycle","Arial Narrow Bold"');
+.theme-setup(litera,	#FFFFFF, #343a40, #4582EC, #adb5bd, #02B875, #17a2b8, #f0ad4e, #d9534f, {font-weight: 700});
+.theme-setup(lumen, 	#FFFFFF, #222,    #158CBA, #f0f0f0, #28B62C, #75CAEB, #FF851B, #FF4136, {}, ~'"Source Sans Pro"');
+.theme-setup(lux, 		#FFFFFF, #1a1a1a, #1a1a1a, #fff,    #4BBF73, #1F9BCF, #f0ad4e, #d9534f, {font-weight: 600; span {text-transform: uppercase;}}, ~'"Nunito Sans"');
+.theme-setup(materia, 	#FFFFFF, #444444, #2196F3, #FFFFFF, #4CAF50, #9C27B0, #FF9800, #E51C23, {}, ~'"Roboto"');
+.theme-setup(minty, 	#FFFFFF, #888,    #78C2AD, #F3969A, #56CC9D, #6CC3D5, #FFCE67, #FF7851, {font-weight: 500}, ~'"Montserrat"');
+.theme-setup(pulse, 	#FFFFFF, #444,    #593196, #fff,    #13B955, #009CDC, #EFA31D, #FC3939, {});
+.theme-setup(sandstone, #FFFFFF, #3E3F3A, #325D88, #8E8C84, #93C54B, #29ABE0, #F47C3C, #D9534F, {}, ~'"Roboto"');
+.theme-setup(sketchy, 	#FFFFFF, #212529, #333,    #555,    #28a745, #17a2b8, #ffc107, #dc3545, {}, ~'"Cabin Sketch"');
+.theme-setup(solar, 	#002B36, #839496, #B58900, #839496, #2AA198, #268BD2, #CB4B16, #D33682, {}, ~'"Source Sans Pro"');
+.theme-setup(superhero, #2B3E50, #EBEBEB, #DF691A, #4E5D6C, #5CB85C, #5BC0DE, #F0AD4E, #D9534F, {}, ~'"Lato"');
+.theme-setup(united, 	#FFFFFF, #333333, #DD4814, #AEA79F, #38B44A, #772953, #EFB73E, #DF382C, {}, ~'"Ubuntu"');
+.theme-setup(yeti, 		#FFFFFF, #222222, #008CBA, #eee,    #43AC6A, #5BC0DE, #E99002, #F04124, {}, ~'"Open Sans"');
+
+.theme-setup-gradient(
+	cerulean,// name 
+	#FFFFFF, // background
+	#868e96, // text
+	linear-gradient(#54b4eb, #2FA4E7 60%, #1d9ce5), // primary
+	linear-gradient(white, 	 #e9ecef 60%, #dde2e6),	// secondary 
+	linear-gradient(#88c149, #73A839 60%, #699934), // success
+	linear-gradient(#04519b, #033C73 60%, #02325f), // info
+	linear-gradient(#ff6707, #DD5600 60%, #c94e00), // warning
+	linear-gradient(#e12b31, #C71C22 60%, #b5191f)	// danger
+);
+
+.theme-setup-gradient(
+	simplex, // name
+	#FCFCFC, // background
+	#212529, // text
+	linear-gradient(#e72510, #D9230F 6%, #cb210e),  // primary
+	linear-gradient(white, #fff 6%, #f7f7f7),		// secondary 
+	linear-gradient(#4da309, #469408 6%, #3f8507), 	// success
+	linear-gradient(#02a5de, #029ACF 6%, #028fc0), 	// info
+	linear-gradient(#a54caa, #9B479F 6%, #914294), 	// warning
+	linear-gradient(#e08b27, #D9831F 6%, #cc7b1d),	// danger
+	{},
+	~'"Open Sans"' // font
+);	 
+
+.theme-setup-gradient(
+	slate, // name
+	#272B30, // background
+	#aaa, // text
+	linear-gradient(#484e55, #3A3F44 60%, #313539),  // primary
+	linear-gradient(#8a9196, #7A8288 60%, #70787d),	 // secondary 
+	linear-gradient(#78cc78, #62c462 60%, #53be53),  // success
+	linear-gradient(#74cae3, #5bc0de 60%, #4ab9db),  // info
+	linear-gradient(#faa123, #f89406 60%, #e48806),  // warning
+	linear-gradient(#f17a77, #ee5f5b 60%, #ec4d49)	 // danger
+);	
+
+.theme-setup-gradient(
+	spacelab, // name
+	#fff, // background
+	#777, // text
+	linear-gradient(#6d94bf, #446E9B 50%, #3e648d),  // primary
+	linear-gradient(#bfbfbf, #999 50%, #8f8f8f),	 // secondary 
+	linear-gradient(#61dd45, #3CB521 50%, #36a41e),  // success
+	linear-gradient(#7bbdf7, #3399F3 50%, #208ff2),  // info
+	linear-gradient(#ff9c22, #D47500 50%, #c06a00),  // warning
+	linear-gradient(#ff1d1b, #CD0200 50%, #b90200),	 // danger
+	{},
+	~'"Open Sans"' // font
+);	  

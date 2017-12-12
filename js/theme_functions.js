@@ -11,10 +11,12 @@ var themes = [
 	'lux',
 	'materia',
 	'minty',
+	'pulse',
 	'sandstone',
 	'simplex',
 	'sketchy',
 	'slate',
+	'solar',
 	'spacelab',
 	'superhero',
 	'united',
@@ -41,7 +43,7 @@ function setTheme(t) {
 			'cacheControl();'
 	});
 
-	$("#download").attr('href', "http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/"+ t +"/bootstrap.min.css").data('galabel', 'Download: ' + t );
+	$("#download").attr('href', "https://bootswatch.com/4/"+ t +"/bootstrap.min.css").data('galabel', 'Download: ' + t );
 
 	checkFaved(t, function(isFaved){
 		if (isFaved) {

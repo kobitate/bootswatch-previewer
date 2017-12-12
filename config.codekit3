@@ -52,8 +52,8 @@
 		"ma": 0,
 		"mi": 1,
 		"oA": 0,
-		"oAP": "\/js\/init-min.js",
-		"oF": 0,
+		"oAP": "\/js\/init.min.js",
+		"oF": 2,
 		"sC": 1,
 		"tS": 0
 		},
@@ -223,6 +223,12 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"\/popup\/popup.css.map": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/popup\/popup.css.map",
+		"oF": 0
+		},
 	"\/popup\/popup.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -234,8 +240,8 @@
 		"ma": 0,
 		"mi": 1,
 		"oA": 0,
-		"oAP": "\/popup\/popup-min.js",
-		"oF": 0,
+		"oAP": "\/popup\/popup.min.js",
+		"oF": 2,
 		"sC": 1,
 		"tS": 0
 		},

@@ -7,5 +7,9 @@ chrome.runtime.onInstalled.addListener(function(details){
 		chrome.storage.sync.set({favorites: ""});
 		chrome.storage.sync.set({startupMode: "all_themes"});
 		noninteractionEvent('extension', 'install');
+    } else if (details.reason === "update" && chrome.runtime.getManifest().version === "2.0") {
+	    chrome.storage.sync.set({showUpdatev2Dialog: true});
+		chrome.storage.sync.set({favorites: ""});
+		chrome.storage.sync.set({startupMode: "all_themes"});
     }
 });

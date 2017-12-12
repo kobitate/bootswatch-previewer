@@ -91,3 +91,17 @@ function toggleFave(t) {
 function clearFaves(){
 	setFaves("");
 }
+
+function setShowUpdatev2Dialog(toShow){
+	chrome.storage.sync.set({showUpdatev2Dialog: toShow});
+}
+
+function getShowUpdatev2Dialog(callback) {
+	getSetting("showUpdatev2Dialog", function(data) {
+		if (data.showUpdatev2Dialog === undefined) {
+			setShowUpdatev2Dialog(false);
+		} else {
+			callback(data.showUpdatev2Dialog);
+		}
+	});
+}
