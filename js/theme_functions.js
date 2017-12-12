@@ -1,5 +1,25 @@
 // define our themes
-var themes = ['cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];
+var themes = [
+	'cerulean',
+	'cosmo',
+	'cyborg',
+	'darkly',
+	'flatly',
+	'journal',
+	'litera',
+	'lumen',
+	'lux',
+	'materia',
+	'minty',
+	'sandstone',
+	'simplex',
+	'sketchy',
+	'slate',
+	'spacelab',
+	'superhero',
+	'united',
+	'yeti'
+];
 
 function prepPage() {
 	chrome.tabs.executeScript(null, {file: "target_page/inject.js"}, function(){
