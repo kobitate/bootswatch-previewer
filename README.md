@@ -1,7 +1,5 @@
 # Bootswatch Previewer for Chrome
-This is a Chrome extension that allows you to preview any of the themes from [http://bootswatch.com](Bootswatch) on any Bootstrap-built website!  
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/d/jlmhopkiicfdiaghialcjleommnolkpl.svg?maxAge=2592000)](https://chrome.google.com/webstore/detail/bootswatch-previewer/jlmhopkiicfdiaghialcjleommnolkpl?authuser=0)
-[![GitHub release](https://img.shields.io/github/release/therealgitcub/bootswatch-previewer.svg?maxAge=2592000)](https://github.com/TheRealGitCub/bootswatch-previewer/releases)
+Chrome extension that allows you to preview any of the themes from [http://bootswatch.com](Bootswatch) on any Bootstrap-built website!  
 
 ![Preview](http://i.imgur.com/iqbUNa9.png)
 
